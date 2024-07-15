@@ -38,13 +38,11 @@ git switch dev-frontend
 ```
 
 #### Crear tu propia rama
-- Nombre de rama a elección pero recomendado usar un nombre corto según la tarea a realizar
+- Nombre de rama a usar `feat:NombreDel Desarrollador-dev`
 - Este comando crea una nueva rama y cambia a ella directamente.
 ```bash
 - Ejemplos
-git switch -c HomePage
-git switch -c FormLogin
-git switch -c Navbar
+git switch -c feat:Adan-Jimenez-dev
 ```
 
 3. **Instalación de dependencias:**
