@@ -2,8 +2,14 @@ import React from 'react';
 import Button from '../components/ui/Button';
 import { SearchIcon } from '../assets/icons';
 import Input from '../components/ui/Input';
+import Select from '../components/ui/Select';
 
 export default function Home() {
+  const options = [
+    { label: 'Option 1', value: '1' },
+    { label: 'Option 2', value: '2' },
+    { label: 'Option 3', value: '3' },
+  ];
   return (
     <div>
       HomePage
@@ -29,6 +35,13 @@ export default function Home() {
         required
         placeholder='Buscar libros...'
         icon
+        error
+        errorMessage='dasdasd'
+      />
+      <Select
+        label='select'
+        options={options}
+        placeholder='Filtrar por género'
         error
         errorMessage='dasdasd'
       />
