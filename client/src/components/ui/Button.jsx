@@ -38,7 +38,7 @@ const buttonSizes = {
  *
  * @example
  * // Uso básico del componente Button
- * <Button variant="outline" size="lg" className="customClass" icon={<Icon />} disabled>
+ * <Button variant="outline" size="lg" className="customClass" leftIcon={<Icon />} disabled>
  *   Click
  * </Button>
  */
@@ -65,7 +65,9 @@ const Button = React.forwardRef(
         ref={ref}
         {...props}
       >
+        {leftIcon && <span style={{ marginRight: '4px' }}>{leftIcon}</span>}
         {props.children}
+        {rightIcon && <span style={{ marginLeft: '4px' }}>{rightIcon}</span>}
       </Comp>
     );
   }
