@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '../components/ui/Button';
 import { SearchIcon } from '../assets/icons';
+import Input from '../components/ui/Input';
 
 export default function Home() {
   return (
@@ -23,6 +24,14 @@ export default function Home() {
       <Button variant='ghost' size='sm'>
         Ghost Button
       </Button>
+      <Input
+        label='input'
+        required
+        placeholder='Buscar libros...'
+        icon
+        error
+        errorMessage='dasdasd'
+      />
     </div>
   );
 }
