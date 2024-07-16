@@ -3,6 +3,7 @@ import Button from '../components/ui/Button';
 import { SearchIcon } from '../assets/icons';
 import Input from '../components/ui/Input';
 import Select from '../components/ui/Select';
+import UserMenu from '../components/UserMenu';
 
 export default function Home() {
   const options = [
@@ -45,6 +46,7 @@ export default function Home() {
         error
         errorMessage='dasdasd'
       />
+      <UserMenu username='adasdads' logout={options} />
     </div>
   );
 }
