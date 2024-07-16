@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../styles/components/ui/select.css';
 
 /**
@@ -46,6 +46,11 @@ const Select = React.forwardRef(
     },
     ref
   ) => {
+    const [selectedValue, setSelectedValue] = useState('');
+
+    const handleChange = (event) => {
+      setSelectedValue(event.target.value);
+    };
     return (
       <div className={`inputWithLabel ${className}`}>
         {label && (
@@ -53,8 +58,16 @@ const Select = React.forwardRef(
             {label} {required && <span className='requiredIndicator'>*</span>}
           </label>
         )}
-        <select id={name} name={name} className='select' ref={ref} {...props}>
-          <option value='' disabled selected>
+        <select
+          id={name}
+          name={name}
+          className='select'
+          value={selectedValue}
+          onChange={handleChange}
+          ref={ref}
+          {...props}
+        >
+          <option value='' disabled>
             {placeholder}
           </option>
           {options.map((option, i) => (
