@@ -1,0 +1,17 @@
+:root {
+  --primary-color: #5856d6;
+  --primary-color-opacity: #5856d6de;
+  --background-color: #fdf5e6;
+  --ring-color: #e4e4e7;
+  --star-color: #ffcc00;
+  --edit-color: #14ae5c;
+  --delete-color: #ec221f;
+  --gray-color: #d9d9d9;
+  --text-color: #202020;
+  --placeholder-color: #71717a;
+  --blue-color: #007aff;
+}
+
+body {
+  background-color: var(--background-color);
+}
