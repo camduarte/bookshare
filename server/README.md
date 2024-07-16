@@ -73,29 +73,29 @@ server
     │   │       └── hackatong7
     │   │           └── server
     │   │               ├── application
-    │   │               │   ├── dto
-    │   │               │   └── service
-    │   │               │       └── impl
-    │   │               ├── crosscutting
+    │   │               │   ├── dto        --> dto: Objetos de transferencia de datos que se utilizan para transportar datos entre las capas.
+    │   │               │   └── service    --> Lógica de negocio y servicios de la aplicación. Interfaz.
+    │   │               │       └── impl   --> Implementaciones de los servicios.
+    │   │               ├── crosscutting   --> Clases y componentes que son transversales a varias capas, como excepciones y utilidades comunes.  
     │   │               ├── domain
-    │   │               │   └── entity
+    │   │               │   └── entity    --> Modelos
     │   │               ├── infrastructure
-    │   │               │   ├── config
+    │   │               │   ├── config --> Configuraciones de la aplicación.
     │   │               │   │   └── WebSecurityConfig.java
-    │   │               │   ├── security
-    │   │               │   └── utils
+    │   │               │   ├── security    --> Componentes de seguridad como JWT.
+    │   │               │   └── utils    --> Utilidades de infraestructura.
     │   │               ├── persistence
-    │   │               │   ├── dao
-    │   │               │   │   └── impl
-    │   │               │   └── repository
+    │   │               │   ├── dao         --> DAO. Interfaz
+    │   │               │   │   └── impl    --> DAO. Implementación
+    │   │               │   └── repository  --> Repositorios Spring Data JPA.
     │   │               ├── presentation
-    │   │               │   └── controller
+    │   │               │   └── controller    --> API REST
     │   │               ├── ServerApplication.java
     │   │               └── ServletInitializer.java
     │   ├── resources
     │   │   ├── application.properties
-    │   │   ├── json
-    │   │   ├── sql
+    │   │   ├── json  --> Datos de prueba json.
+    │   │   ├── sql  --> Datos de prueba sql.
     │   │   ├── static
     │   │   └── templates
     │   └── webapp
