@@ -16,9 +16,9 @@ import '../../styles/components/ui/select.css';
  * @param {string} props.errorMessage - Mensaje de error a mostrar.
  * @param {object} ref - Ref para acceder al elemento select.
  * @param {...any} props - Otras props para pasar directamente al elemento select.
- * 
+ *
  * @returns {JSX.Element} - JSX que representa el componente Select.
- * 
+ *
  * @example
  * // Uso básico del componente Select
  * <Select
