@@ -1,8 +1,3 @@
-<div align="center">
-<img src="src/assets/logo/Logo.png" alt="logo" width="100" height="auto" />
-<h1>BookShare</h1>
-</div>
-
 ## Guía de desarrollo
 
 ### Requisitos
@@ -29,9 +24,10 @@ mvnw clean package
 ```bash
 mvnw spring-boot:run
 ```
-5. **Verificar ejecución**:
+5. **Verificar ejecución en el log**:
 ```bash
-http://localhost:8080
+Tomcat started on port 8080 (http) with context path '/'
+Started ServerApplication in 4.382 seconds (process running for 4.778)
 ```
 6. **Detener aplicación**:
 ```bash
