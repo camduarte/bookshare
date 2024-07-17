@@ -1,0 +1,14 @@
+/* ------------------- My Books Page ------------------- */
+.my-books-container {
+}
+
+.button-container {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+
+.table-container {
+  padding: 2rem 0;
+  overflow-x: scroll;
+}
