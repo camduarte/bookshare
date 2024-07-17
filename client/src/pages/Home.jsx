@@ -3,7 +3,6 @@ import Button from '../components/ui/Button';
 import { SearchIcon } from '../assets/icons';
 import Input from '../components/ui/Input';
 import Select from '../components/ui/Select';
-import UserMenu from '../components/UserMenu';
 
 export default function Home() {
   const options = [
@@ -12,7 +11,7 @@ export default function Home() {
     { label: 'Option 3', value: '3' },
   ];
   return (
-    <div>
+    <div style={{ marginTop: '10rem' }}>
       HomePage
       <Button variant='default' size='default' disabled>
         Default Button
@@ -46,7 +45,6 @@ export default function Home() {
         error
         errorMessage='dasdasd'
       />
-      <UserMenu username='adasdads' logout={options} />
     </div>
   );
 }
