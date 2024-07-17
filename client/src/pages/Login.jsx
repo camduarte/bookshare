@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
-import '../styles/pages/login.css'; 
+import '../styles/pages/login.css';
 import Button from '../components/ui/Button';
 import { SearchIcon } from '../assets/icons';
 import Input from '../components/ui/Input';
 import Select from '../components/ui/Select';
 import UserMenu from '../components/UserMenu';
 
-
-  const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [emailError, setEmailError] = useState('');
-    const [passwordError, setPasswordError] = useState('');
+const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
 
   const validateEmail = (email) => {
     // Verifica que el correo electrónico sea válido
@@ -38,56 +37,57 @@ import UserMenu from '../components/UserMenu';
       valid = false;
     }
 
-    if (valid) {
+    if (valid)
       // Realiza la lógica de inicio de sesión
       console.log('Iniciar sesión con:', { email, password });
-    }
   };
 
   return (
-    <div className="login-card">
-      <img src="src/assets/logo/Logo.png" alt="Company Logo" className="logo" />
-      <h1>Iniciar Sesión</h1>
-      
+    <div className='login-card'>
+      <img src='src/assets/logo/Logo.png' alt='Company Logo' className='logo' />
+      <h1 className='login-title'>Iniciar Sesión</h1>
+
       <form onSubmit={handleSubmit}>
-        <div className="input-group">
-          
-        <Input
-          label ='Correo Electrónico'       
-          placeholder='ingresa tu email'  
-          type='email'
-          id='email' 
-          name='email'
-          value={email} 
-          onChange={(e) => setEmail(e.target.value)}  
-        />
-       {emailError && <p className="error">{emailError}</p>}
-        
-        </div>
-        <div className="input-group">
-         
+        <div className='input-group'>
           <Input
-        label='Contraseña'     
-        placeholder='ingresa tu contraseña'
-        type="password" 
-        id="password" 
-        name="password" 
-        value={password} 
-        onChange={(e) => setPassword(e.target.value)}   
-           
-      />
-        {passwordError && <p className="error">{passwordError}</p>}
+            label='Correo Electrónico'
+            placeholder='ingresa tu email'
+            type='email'
+            id='email'
+            name='email'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          {emailError && <p className='error'>{emailError}</p>}
         </div>
-        
-      <Button variant='default' size='default' type='submit'>
-        Iniciar Sesión
-      </Button>
-       
+        <div className='input-group'>
+          <Input
+            label='Contraseña'
+            placeholder='ingresa tu contraseña'
+            type='password'
+            id='password'
+            name='password'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {passwordError && <p className='error'>{passwordError}</p>}
+        </div>
+
+        <Button
+          variant='default'
+          size='default'
+          type='submit'
+          className='register-button'
+        >
+          Iniciar Sesión
+        </Button>
       </form>
-      <p className="register-text">
-        No tengo una cuenta, <a href="/register" className="register-link">registrarme</a>
+      <p className='register-text'>
+        No tengo una cuenta,{' '}
+        <a href='/register' className='register-link'>
+          registrarme
+        </a>
       </p>
-    
     </div>
   );
 };

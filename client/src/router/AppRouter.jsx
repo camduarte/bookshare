@@ -12,8 +12,8 @@ export const AppRouter = () => {
     <Routes>
       <Route path='/' element={<FullWithLayout />}>
         <Route index element={<Home />} />
-        <Route path='/login' element={<Login/>} />
-        <Route path='/register' element={<Register/>} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
         <Route path='mis-libros' element={<MyBooksPage />} />
         <Route path='*' element={<h1>Error404</h1>} />
       </Route>

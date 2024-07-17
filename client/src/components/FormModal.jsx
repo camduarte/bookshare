@@ -1,6 +1,6 @@
 // AddBookModal.js
 import React, { useState } from 'react';
-import '../styles/components/formModal.css'; 
+import '../styles/components/formModal.css';
 
 const FormModal = ({ onClose }) => {
   const [formData, setFormData] = useState({
@@ -9,7 +9,7 @@ const FormModal = ({ onClose }) => {
     author: '',
     publicationYear: '2024',
     description: '',
-    cover: null
+    cover: null,
   });
 
   const handleChange = (e) => {
@@ -35,75 +35,78 @@ const FormModal = ({ onClose }) => {
   };
 
   return (
-    <div className="modal">
-      <div className="modal-content">
+    <div className='modal'>
+      <div className='modal-content'>
         <h2>Agregar Nuevo Libro</h2>
         <form onSubmit={handleSubmit}>
-          <div className="form-group">
-          <label>Título *</label>
+          <div className='form-group'>
+            <label>Título *</label>
             <input
-              type="text"
-              name="title"
+              type='text'
+              name='title'
               value={formData.title}
               onChange={handleChange}
               required
             />
-          
           </div>
-          <div className="form-group">
+          <div className='form-group'>
             <label>Género *</label>
             <select
-              name="genre"
+              name='genre'
               value={formData.genre}
               onChange={handleChange}
               required
             >
-              <option value="Ficción">Ficción</option>
-              <option value="No Ficción">No Ficción</option>
+              <option value='Ficción'>Ficción</option>
+              <option value='No Ficción'>No Ficción</option>
               {/* Agregar más opciones según sea necesario */}
             </select>
           </div>
-          <div className="form-group">
+          <div className='form-group'>
             <label>Autor *</label>
             <input
-              type="text"
-              name="author"
+              type='text'
+              name='author'
               value={formData.author}
               onChange={handleChange}
               required
             />
           </div>
-          <div className="form-group">
+          <div className='form-group'>
             <label>Año de Publicación *</label>
             <input
-              type="number"
-              name="publicationYear"
+              type='number'
+              name='publicationYear'
               value={formData.publicationYear}
               onChange={handleChange}
               required
             />
           </div>
-          <div className="form-group">
+          <div className='form-group'>
             <label>Descripción *</label>
             <textarea
-              name="description"
+              name='description'
               value={formData.description}
               onChange={handleChange}
               required
             />
           </div>
-          <div className="form-group">
+          <div className='form-group'>
             <label>Portada del Libro *</label>
             <input
-              type="file"
-              name="cover"
+              type='file'
+              name='cover'
               onChange={handleFileChange}
               required
             />
           </div>
-          <button type="submit">Agregar Libro</button>
+          <button type='submit' className='button-form'>
+            Agregar Libro
+          </button>
         </form>
-        <button onClick={onClose}>Cerrar</button>
+        <button onClick={onClose} className='button-form'>
+          Cerrar
+        </button>
       </div>
     </div>
   );
