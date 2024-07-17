@@ -1,5 +1,9 @@
 package com.hackatong7.server.application.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 /**
  * DTO para el registro de un usuario.
  * Contiene los datos necesarios para registrar un usuario nuevo en el sistema.
@@ -14,13 +18,25 @@ package com.hackatong7.server.application.dto;
  */
 public class RegistroUsuarioDTO {
 
-    /** El nombre del usuario. */
+    /** 
+     * El nombre del usuario.
+     */
+    @NotBlank(message = "El nombre es obligatorio")
+    @Size(min = 1, max = 100, message = "El nombre debe tener entre 1 y 100 caracteres")
     private String nombre;
 
-    /** El correo electrónico del usuario. */
+    /**
+     * El correo electrónico del usuario.
+     */
+    @NotBlank(message = "El correo electrónico es obligatorio")
+    @Email(message = "El correo electrónico debe tener un formato válido")
     private String correo;
 
-    /** La contraseña del usuario. */
+    /**
+     * La contraseña del usuario.
+     */
+    @NotBlank(message = "La contraseña es obligatoria")
+    @Size(min = 8, message = "La contraseña debe tener al menos 8 caracteres")
     private String contrasena;
 
     /**
