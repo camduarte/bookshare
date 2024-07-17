@@ -13,7 +13,7 @@ export default function Home() {
   ];
   return (
     <div>
-      HomePage
+      HomePage 2
       <Button variant='default' size='default' disabled>
         Default Button
       </Button>

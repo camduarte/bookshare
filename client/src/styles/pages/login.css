@@ -1,0 +1,85 @@
+/* src/components/LoginCard.css */
+
+  .login-card {
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 10%;
+    max-width: 400px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    text-align: center;
+  }
+  
+  .logo {
+    width: 100px;
+    margin-bottom: 20px;
+  }
+  
+  h1 {
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 25px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .register-text {
+    color: #666; /* Gris */
+    justify-content: start;
+    padding-top: 25px;
+    margin-top: 15px;
+    display: inline; /* Mantiene el texto y el enlace en la misma línea */
+  }
+  
+  .register-link {
+    color: #007bff;
+    text-decoration: none;
+    display: inline; /* Mantiene el enlace en la misma línea que el texto */
+  }
+  
+  .register-link:hover {
+    text-decoration: underline;
+  }
+
+  .error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
