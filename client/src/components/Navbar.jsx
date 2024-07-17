@@ -6,7 +6,7 @@ import '../styles/components/navbar.css';
 import UserMenu from './UserMenu';
 
 const Navbar = () => {
-  const [token, setToken] = useState(false);
+  const [token, setToken] = useState(true);
   return (
     <div className='container'>
       <nav className='navbar'>
@@ -15,7 +15,7 @@ const Navbar = () => {
         </a>
         <Input placeholder='Buscar libros...' icon className='searchInput' />
         {token ? (
-          <UserMenu username='adasdads' />
+          <UserMenu username='adasdads' logout={() => setToken(false)} />
         ) : (
           <div className='authState'>
             <Button>

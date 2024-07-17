@@ -18,6 +18,7 @@
 
 .menu {
   position: absolute;
+  background-color: #fff;
   top: 3rem;
   width: 14rem;
   border: 1px solid var(--ring-color);
