@@ -89,7 +89,7 @@ public class RegistroUsuarioDTO {
      * 
      * @param correo el correo electrónico del usuario
      */
-    public void setEmail(String correo) {
+    public void setCorreo(String correo) {
         this.correo = correo;
     }
 
