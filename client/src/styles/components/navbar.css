@@ -1,0 +1,23 @@
+/* ----------------------------- Navbar ----------------------------- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.625rem 0;
+}
+
+.searchInput {
+  width: 100%;
+  max-width: 50rem;
+  padding: 0 1rem;
+}
+
+.authState {
+  display: flex;
+  gap: 1rem;
+}
+
+.authLogin {
+  color: #fff;
+  text-decoration: none;
+}
