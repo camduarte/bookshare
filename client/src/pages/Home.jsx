@@ -3,6 +3,7 @@ import Button from '../components/ui/Button';
 import { ArrowRightIcon } from '../assets/icons';
 import HeroBg from '../assets/bg.webp';
 import '../styles/pages/homePage.css';
+import Card from '../components/Card';
 
 export default function Home() {
   return (
@@ -43,7 +44,12 @@ export default function Home() {
           <Button variant='outline'>Romance</Button>
           <Button variant='outline'>Ciencia Ficción</Button>
         </div>
-        <div className='popular-books-cards'>cards</div>
+        <div className='popular-books-cards'>
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+        </div>
         <div>
           <Button className='explore-button-books'>
             <a href='/libros'>Explorar Libros</a>
