@@ -1,0 +1,101 @@
+.home-main {
+  margin-bottom: 5rem;
+}
+
+/* ----------------- Hero Section ------------------ */
+.hero-section {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-content {
+  z-index: 10;
+  color: #fff;
+  text-align: center;
+  max-width: 43rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 0 1rem;
+}
+
+.hero-title {
+  font-size: calc(1.5rem + 2vw);
+  line-height: calc(1.75rem + 2vw);
+  font-weight: 700;
+}
+
+.hero-description {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.register-button a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.explore-button {
+  display: flex;
+  gap: 0.5rem;
+  background-color: transparent;
+}
+
+.explore-button a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* ----------------- Books Section ------------------ */
+.popular-books {
+  margin-top: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 0 1rem;
+}
+
+.popular-books-title {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 700;
+}
+
+.popular-books-genres {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.popular-books-cards {
+}
+
+.explore-button-books a {
+  color: #fff;
+  text-decoration: none;
+}

@@ -1,52 +1,55 @@
 import React from 'react';
 import Button from '../components/ui/Button';
-import { SearchIcon } from '../assets/icons';
-import Input from '../components/ui/Input';
-import Select from '../components/ui/Select';
-import Card from '../components/Card';
+import { ArrowRightIcon } from '../assets/icons';
+import HeroBg from '../assets/bg.webp';
+import '../styles/pages/homePage.css';
 
 export default function Home() {
-  const options = [
-    { label: 'Option 1', value: '1' },
-    { label: 'Option 2', value: '2' },
-    { label: 'Option 3', value: '3' },
-  ];
   return (
-    <div style={{ marginTop: '10rem' }}>
-      HomePage
-      <Button variant='default' size='default' disabled>
-        Default Button
-      </Button>
-      <Button
-        variant='default'
-        size='default'
-        leftIcon={<SearchIcon />}
-        disabled
-      >
-        Default Button
-      </Button>
-      <Button variant='outline' size='sm'>
-        Outline Button
-      </Button>
-      <Button variant='ghost' size='sm'>
-        Ghost Button
-      </Button>
-      <Input
-        label='input'
-        required
-        placeholder='Buscar libros...'
-        icon
-        error
-        errorMessage='dasdasd'
-      />
-      <Select
-        label='select'
-        options={options}
-        placeholder='Filtrar por género'
-        error
-        errorMessage='dasdasd'
-      />
-      <Card />
-    </div>
+    <main className='home-main'>
+      <section className='hero-section'>
+        <div className='hero-bg'>
+          <img src={HeroBg} alt='backgroundImage' />
+        </div>
+        <div className='hero-content'>
+          <h1 className='hero-title'>Comparte, Descubre, Lee</h1>
+          <p className='hero-description'>
+            Únete a la comunidad de BookShare y explora un mundo de historias.
+            Intercambia libros, comparte reseñas y encuentra tu próxima lectura
+            favorita.
+          </p>
+          <div className='hero-buttons'>
+            <Button className='register-button'>
+              <a href='/register'>Regístrate Gratis</a>
+            </Button>
+            <Button
+              variant='ghost'
+              rightIcon={<ArrowRightIcon />}
+              className='explore-button'
+            >
+              <a href='/libros'>Explorar Libros</a>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <section className='popular-books container'>
+        <h2 className='popular-books-title'>Libros Populares</h2>
+        <div className='popular-books-genres'>
+          <Button variant='outline'>Todos</Button>
+          <Button variant='outline'>Ficción</Button>
+          <Button variant='outline'>No Ficción</Button>
+          <Button variant='outline'>Misterio</Button>
+          <Button variant='outline'>Romance</Button>
+          <Button variant='outline'>Ciencia Ficción</Button>
+        </div>
+        <div className='popular-books-cards'>cards</div>
+        <div>
+          <Button className='explore-button-books'>
+            <a href='/libros'>Explorar Libros</a>
+          </Button>
+        </div>
+      </section>
+    </main>
   );
 }
