@@ -9,7 +9,6 @@ import com.hackatong7.server.domain.entity.Usuario;
 
 public interface UsuarioDAO {
 
-    
     Usuario guardarUsuario(Usuario usuario);
 
     Usuario actualizarUsuario(Usuario usuario);
