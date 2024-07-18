@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hackatong7.server.application.dto.LoginReqDTO;
+import com.hackatong7.server.application.dto.LoginResDTO;
 import com.hackatong7.server.application.dto.RegistroUsuarioDTO;
 import com.hackatong7.server.application.service.AuthService;
 
@@ -41,5 +43,11 @@ public class AuthController {
     public ResponseEntity<?> registrarUsuario(@Valid @RequestBody RegistroUsuarioDTO registroUsuarioDTO) {
         authService.registrarUsuario(registroUsuarioDTO);
         return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> loginUsuario(@RequestBody LoginReqDTO loginDTO) {
+        String token = authService.loginUsuario(loginDTO);
+        return ResponseEntity.ok(new LoginResDTO(token));
     }
 }

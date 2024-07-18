@@ -1,5 +1,6 @@
 package com.hackatong7.server.application.service;
 
+import com.hackatong7.server.application.dto.LoginReqDTO;
 import com.hackatong7.server.application.dto.RegistroUsuarioDTO;
 import com.hackatong7.server.domain.entity.Usuario;
 
@@ -24,4 +25,12 @@ public interface AuthService {
      * @return el usuario registrado
      */
     Usuario registrarUsuario(RegistroUsuarioDTO registroUsuarioDTO);
+
+    /**
+     * Autentica un usuario en el sistema.
+     * 
+     * @param loginReqDTO DTO que contiene los datos de inicio de sesión del usuario
+     * @return un token de autenticación si las credenciales son válidas
+     */
+    String loginUsuario(LoginReqDTO loginReqDTO);
 }
