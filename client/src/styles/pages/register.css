@@ -1,9 +1,14 @@
 /* src/components/LoginCard.css */
 
+.register-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .register-card {
   width: 300px;
-  margin: 0 auto;
-  margin-top: 10%;
   max-width: 400px;
   padding: 20px;
   border: 1px solid #ddd;
