@@ -1,34 +1,41 @@
-import React from 'react';
-import '../styles/pages/detailsPage.css';
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import Badge from '../components/ui/Badge';
+import '../styles/pages/detailsPage.css';
+import useBookStore from '../store/bookStore';
 
 const DetailsPage = () => {
-  const data = {
-    img: 'https://bodleianshop.co.uk/cdn/shop/products/SpeakingVolumes.jpg?v=1646308052',
-    title: 'El nombre del viento',
-    author: 'Patrick Rothfuss',
-    year: '2024',
-    genre: 'Fantasía',
-    description:
-      'El nombre del viento es una novela de fantasía épica, primera parte de la trilogía «Crónica del asesino de reyes»...',
-  };
+  const { id } = useParams();
+  const { currentBook, fetchBookById } = useBookStore();
+  const { title, imgUrl, author, genre, year, description } = currentBook || {};
+
+  useEffect(() => {
+    fetchBookById(id);
+  }, [id, fetchBookById]);
+
   return (
     <main className='container'>
       <div className='detail-container'>
         <div className='image-container'>
-          <img src={data.img} alt={data.title} />
+          <img
+            src={
+              imgUrl ||
+              'https://bodleianshop.co.uk/cdn/shop/products/SpeakingVolumes.jpg?v=1646308052'
+            }
+            alt={title || 'Título no disponible'}
+          />
         </div>
         <div className='detail-container-info'>
-          <h1>{data.title}</h1>
-          <p className='autor'>por {data.author}</p>
+          <h1>{title || 'Título no disponible'}</h1>
+          <p className='autor'>por {author || 'Desconocido'}</p>
           <div className='information'>
-            <Badge genre={data.genre} />{' '}
+            <Badge genre={genre || 'No especificado'} />{' '}
             <strong>
               <span className='star'>★</span> 4.7
             </strong>{' '}
-            <small>Año de publicación: {data.year}</small>
+            <small>Año de publicación: {year || 'No especificado'}</small>
           </div>
-          <p>{data.description}</p>
+          <p>{description || 'No hay descripción disponible'}</p>
         </div>
       </div>
     </main>
