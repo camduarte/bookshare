@@ -1,93 +1,110 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/pages/login.css';
-import Button from '../components/ui/Button';
-import { SearchIcon } from '../assets/icons';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
+import { LoginSchema } from '../utils/authSchema';
 import Input from '../components/ui/Input';
-import Select from '../components/ui/Select';
-import UserMenu from '../components/UserMenu';
+import Button from '../components/ui/Button';
+import useAuthStore from '../store/authStore';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
+  const { login, isLoading, error, clearError, isAuthenticated } =
+    useAuthStore();
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    trigger,
+    reset,
+  } = useForm({ resolver: zodResolver(LoginSchema) });
 
-  const validateEmail = (email) => {
-    // Verifica que el correo electrónico sea válido
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(String(email).toLowerCase());
+  useEffect(() => {
+    if (isAuthenticated()) navigate('/mis-libros');
+  }, [isAuthenticated, navigate]);
+
+  const handleInputChange = async (field) => {
+    await trigger(field);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Resetea los mensajes de error
-    setEmailError('');
-    setPasswordError('');
-
-    let valid = true;
-
-    if (!validateEmail(email)) {
-      setEmailError('Por favor ingrese un correo electrónico válido.');
-      valid = false;
+  const onSubmit = async ({ email, password }) => {
+    try {
+      await login(email, password);
+      reset();
+      toast.success('Ingresando al sistema');
+      navigate('/mis-libros');
+    } catch (error) {
+      toast.error(
+        `Ocurrió un error al ingresar al sistema: ${error.message || 'Error desconocido'}`
+      );
+      console.error(error);
     }
-
-    if (password.length < 6) {
-      setPasswordError('La contraseña debe tener al menos 6 caracteres.');
-      valid = false;
-    }
-
-    if (valid)
-      // Realiza la lógica de inicio de sesión
-      console.log('Iniciar sesión con:', { email, password });
   };
+
+  useEffect(() => {
+    if (error) {
+      toast.error(`Error: ${error}`);
+      clearError();
+    }
+  }, [error, clearError]);
 
   return (
-    <div className='login-card'>
-      <img src='src/assets/logo/Logo.png' alt='Company Logo' className='logo' />
-      <h1 className='login-title'>Iniciar Sesión</h1>
+    <div className='login-container'>
+      <div className='login-card'>
+        <img
+          src='src/assets/logo/Logo.svg'
+          alt='Company Logo'
+          className='logo'
+        />
+        <h1 className='login-title'>Iniciar Sesión</h1>
 
-      <form onSubmit={handleSubmit}>
-        <div className='input-group'>
-          <Input
-            label='Correo Electrónico'
-            placeholder='ingresa tu email'
-            type='email'
-            id='email'
-            name='email'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          {emailError && <p className='error'>{emailError}</p>}
-        </div>
-        <div className='input-group'>
-          <Input
-            label='Contraseña'
-            placeholder='ingresa tu contraseña'
-            type='password'
-            id='password'
-            name='password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          {passwordError && <p className='error'>{passwordError}</p>}
-        </div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className='input-group'>
+            <Input
+              label='Email'
+              type='email'
+              name='email'
+              placeholder='ejemplo@gmail.com'
+              {...register('email')}
+              onBlur={() => handleInputChange('email')}
+              isError={!!errors.email}
+              errorMessage={errors.email?.message}
+              required
+            />
+          </div>
+          <div className='input-group'>
+            <Input
+              type='password'
+              label='Contraseña'
+              name='password'
+              placeholder='********'
+              {...register('password')}
+              onBlur={() => handleInputChange('password')}
+              isError={!!errors.password}
+              errorMessage={errors.password?.message}
+              required
+            />
+          </div>
 
-        <Button
-          variant='default'
-          size='default'
-          type='submit'
-          className='register-button'
-        >
-          Iniciar Sesión
-        </Button>
-      </form>
-      <p className='register-text'>
-        No tengo una cuenta,{' '}
-        <a href='/register' className='register-link'>
-          registrarme
-        </a>
-      </p>
+          <Button
+            variant='default'
+            size='default'
+            type='submit'
+            className='register-button'
+            disabled={isLoading}
+          >
+            Iniciar Sesión
+          </Button>
+        </form>
+        <p className='register-text'>
+          No tienes una cuenta?{' '}
+          <a href='/register' className='register-link'>
+            Registrarse
+          </a>
+        </p>
+      </div>
     </div>
   );
 };

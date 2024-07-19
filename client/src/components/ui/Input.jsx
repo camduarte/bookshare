@@ -41,9 +41,7 @@ const Input = React.forwardRef(
       name,
       icon,
       type = 'text',
-      value,
-      onChange,
-      error,
+      isError = false,
       errorMessage,
       className = '',
       required = false,
@@ -65,15 +63,13 @@ const Input = React.forwardRef(
 
           <input
             ref={ref}
-            id={name}
             type={type}
+            name={name}
             className={`input ${icon ? 'inputIconPosition' : ''}`}
             {...props}
           />
         </div>
-        {error && (
-          <span className='errorMessage'>*{errorMessage || error}</span>
-        )}
+        {isError && <span className='errorMessage'>*{errorMessage}</span>}
       </div>
     );
   }

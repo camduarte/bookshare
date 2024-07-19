@@ -1,9 +1,14 @@
 /* src/components/LoginCard.css */
 
+.login-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .login-card {
   width: 300px;
-  margin: 0 auto;
-  margin-top: 10%;
   max-width: 400px;
   padding: 20px;
   border: 1px solid #ddd;
