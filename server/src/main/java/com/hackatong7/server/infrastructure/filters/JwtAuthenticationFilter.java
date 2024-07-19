@@ -2,6 +2,7 @@ package com.hackatong7.server.infrastructure.filters;
 
 import java.io.IOException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -10,6 +11,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+
+import com.hackatong7.server.application.service.InvalidTokenService;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -36,20 +39,15 @@ import jakarta.servlet.http.HttpServletResponse;
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    private final UserDetailsService userDetailsService;
-    private final String jwtSecret;
+	@Autowired
+    private UserDetailsService userDetailsService;
 
-    /**
-     * Constructor que inyecta el servicio de detalles del usuario y el secreto JWT.
-     * 
-     * @param userDetailsService el servicio de detalles del usuario
-     * @param jwtSecret el secreto JWT
-     */
-    public JwtAuthenticationFilter(UserDetailsService userDetailsService, @Value("${jwt.secret}") String jwtSecret) {
-        this.userDetailsService = userDetailsService;
-        this.jwtSecret = jwtSecret;
-    }
+	@Value("${jwt.secret}")
+    private  String jwtSecret;
 
+    @Autowired
+    private InvalidTokenService invalidTokenService;
+	
     /**
      * Filtra las solicitudes HTTP para autenticar el usuario basado en el token JWT.
      * 
@@ -64,10 +62,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
 
-        String jwt = getJwtFromRequest(request);
+        String token = getJwtFromRequest(request);
 
-        if (jwt != null && validateToken(jwt)) {
-            String username = getUsernameFromJWT(jwt);
+        if (token != null && validateToken(token) && !invalidTokenService.isTokenInvalid(token)) {
+            String username = getUsernameFromJWT(token);
 
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());

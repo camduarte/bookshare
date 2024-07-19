@@ -12,6 +12,7 @@ import com.hackatong7.server.application.dto.LoginReqDTO;
 import com.hackatong7.server.application.dto.RegistroUsuarioDTO;
 import com.hackatong7.server.application.mapper.UsuarioMapper;
 import com.hackatong7.server.application.service.AuthService;
+import com.hackatong7.server.application.service.InvalidTokenService;
 import com.hackatong7.server.domain.entity.Usuario;
 import com.hackatong7.server.domain.exceptions.RegistroUsuarioException;
 import com.hackatong7.server.domain.exceptions.UsuarioExistenteException;
@@ -44,6 +45,9 @@ public class AuthServiceImpl implements AuthService {
 
     @Autowired
     private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private InvalidTokenService invalidTokenService;
 
     /**
      * Registra un nuevo usuario en el sistema.
@@ -87,5 +91,15 @@ public class AuthServiceImpl implements AuthService {
         } else {
             throw new RuntimeException("Correo electrónico o contraseña incorrectos");
         }
+    }
+
+	/**
+	 * Desloguea el usuario
+	 * 
+	 * @param token El token de autenticación
+	 */
+    public void logoutUsuario(String token) {
+        SecurityContextHolder.clearContext();
+        invalidTokenService.addToken(token);
     }
 }

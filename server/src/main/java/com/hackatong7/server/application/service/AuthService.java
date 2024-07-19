@@ -33,4 +33,11 @@ public interface AuthService {
      * @return un token de autenticación si las credenciales son válidas
      */
     String loginUsuario(LoginReqDTO loginReqDTO);
+
+    /**
+     * Desloguea el usuario
+     * 
+     * @param token El token de autenticación
+     */
+    void logoutUsuario(String token);
 }

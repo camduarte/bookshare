@@ -1,5 +1,6 @@
 package com.hackatong7.server.infrastructure.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -12,20 +13,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.hackatong7.server.application.service.impl.CustomUserDetailsService;
 import com.hackatong7.server.infrastructure.filters.JwtAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
 
-    private final CustomUserDetailsService customUserDetailsService;
-    private final JwtAuthenticationFilter jwtAuthenticationFilter;
-
-    public WebSecurityConfig(CustomUserDetailsService customUserDetailsService, JwtAuthenticationFilter jwtAuthenticationFilter) {
-        this.customUserDetailsService = customUserDetailsService;
-        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
-    }
+	@Autowired
+	private JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -35,6 +30,7 @@ public class WebSecurityConfig {
             .authorizeHttpRequests(authorizeRequests -> authorizeRequests
                 .requestMatchers("/api/auth/register").permitAll()
                 .requestMatchers("/api/auth/login").permitAll()
+                .requestMatchers("/api/auth/logout").authenticated()
                 .requestMatchers("/h2-console/**").permitAll()
                 .anyRequest().authenticated()
             )

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -49,5 +50,14 @@ public class AuthController {
     public ResponseEntity<?> loginUsuario(@RequestBody LoginReqDTO loginDTO) {
         String token = authService.loginUsuario(loginDTO);
         return ResponseEntity.ok(new LoginResDTO(token));
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logoutUsuario(@RequestHeader("Authorization") String token) {
+        if (token != null && token.startsWith("Bearer ")) {
+            token = token.substring(7);
+        }
+        authService.logoutUsuario(token);
+        return ResponseEntity.ok().build();
     }
 }
