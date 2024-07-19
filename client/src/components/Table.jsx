@@ -53,9 +53,12 @@ const Table = () => {
               <td>{book.genre}</td>
               <td>{book.year}</td>
               <td className='actions'>
-                <Button variant='outline' size='icon'  onClick={() => setOpenFormModal(true)}>
+                <Button
+                  variant='outline'
+                  size='icon'
+                  onClick={() => setOpenFormModal(true)}
+                >
                   <EditIcon />
-                 
                 </Button>
                 <Button
                   variant='outline'
@@ -72,7 +75,9 @@ const Table = () => {
       {deleteModalOpen && (
         <DeleteModal onClose={() => setDeleteModalOpen(false)} />
       )}
-       {openFormModal && <FormModalEdit onClose={() => setOpenFormModal(false)} />}
+      {openFormModal && (
+        <FormModalEdit onClose={() => setOpenFormModal(false)} />
+      )}
     </>
   );
 };

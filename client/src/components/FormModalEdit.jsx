@@ -1,11 +1,11 @@
 // AddBookModal.js
 import React, { useState } from 'react';
 import '../styles/components/formModal.css';
-import Button from '../components/ui/Button';
+import Button from './ui/Button';
 import { SearchIcon } from '../assets/icons';
-import Input from '../components/ui/Input';
-import Select from '../components/ui/Select';
-import UserMenu from '../components/UserMenu';
+import Input from './ui/Input';
+import Select from './ui/Select';
+import UserMenu from './UserMenu';
 
 const FormModalEdit = ({ onClose }) => {
   const [formData, setFormData] = useState({
@@ -45,89 +45,77 @@ const FormModalEdit = ({ onClose }) => {
         <h1>Editar información del Libro</h1>
         <form onSubmit={handleSubmit}>
           <div className='form-group form1'>
-              <Input
-            label='Titulo'
-            placeholder='ingresa el título del libro'
-            value={formData.title}
-            onChange={handleChange}
-            required
-            
-          />
-           <Select
+            <Input
+              label='Titulo'
+              placeholder='ingresa el título del libro'
+              value={formData.title}
+              onChange={handleChange}
+              required
+            />
+            <Select
               label='Género'
               name='genre'
               value={formData.genre}
               onChange={handleChange}
               required
-               
-              />
+            />
           </div>
           <div className='form-group form2'>
-          <Input
-            label='Autor'
-            placeholder='Ingresa el nombre del autor'
-            value={formData.author}
-            type='text'
-            name='author'
-            onChange={handleChange}
-            required
-            
-          />
-           
-           <Input
-            label='Año de publicación'
-            placeholder='2024'
-            value={formData.publicationYear}
-            type='number'
-            name='publicationYear'
-            onChange={handleChange}
-            required
-            
-          />   
+            <Input
+              label='Autor'
+              placeholder='Ingresa el nombre del autor'
+              value={formData.author}
+              type='text'
+              name='author'
+              onChange={handleChange}
+              required
+            />
+
+            <Input
+              label='Año de publicación'
+              placeholder='2024'
+              value={formData.publicationYear}
+              type='number'
+              name='publicationYear'
+              onChange={handleChange}
+              required
+            />
           </div>
-         
+
           <div className='form-group'>
-            
-              <Input
-            label='Descripción'
-            placeholder='Ingresa una descripción'
-            value={formData.description}
-            type='textarea'
-            name='description'
-            onChange={handleChange}
-            required
-            
-          />
+            <Input
+              label='Descripción'
+              placeholder='Ingresa una descripción'
+              value={formData.description}
+              type='textarea'
+              name='description'
+              onChange={handleChange}
+              required
+            />
           </div>
           <div className='form-group'>
-            
-              <Input
-            label='Portada'
-            placeholder='Agregar portada'
-            value={formData.author}
-            type='file'
-            name='cover'
-            onChange={handleFileChange}
-            Icon
-            required
-            
-          />
+            <Input
+              label='Portada'
+              placeholder='Agregar portada'
+              value={formData.author}
+              type='file'
+              name='cover'
+              onChange={handleFileChange}
+              Icon
+              required
+            />
           </div>
-          
-          <Button
-          variant='default'
-          size='default'
-          type='submit'         
-        >
-          Actualizar Datos
-        </Button>
+
+          <Button variant='default' size='default' type='submit'>
+            Actualizar Datos
+          </Button>
         </form>
-       
+
         <Button
           variant='outline'
           size='default'
-          type='submit'  
-          onClick={onClose}       
+          type='submit'
+          onClick={onClose}
         >
           Volver
         </Button>

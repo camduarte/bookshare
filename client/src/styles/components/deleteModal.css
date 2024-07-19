@@ -9,39 +9,37 @@
   justify-content: center;
   align-items: center;
   z-index: 110;
-  }
-  
-  .modal {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    width: 400px;
-  }
-  
-  .modal-buttons {
-    margin-top: 20px;
-    
-    display: flex;
-    flex-direction:row;
-    
-    justify-content: space-between;
-    width: 100%;
-  }
-  
-  .confirm-button, .cancel-button {
-   margin: 0 50px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    flex: 1; /* Para que ambos botones ocupen el mismo espacio */
-  }
-  
-  
-  .cancel-button {
-   
-    background-color: transparent;
-    border: 2px solid rgba(192, 185, 185, 0.886);
-    color: rgba(192, 185, 185, 0.886);;
-  }
-  
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  width: 400px;
+}
+
+.modal-buttons {
+  margin-top: 20px;
+
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+  width: 100%;
+}
+
+.confirm-button,
+.cancel-button {
+  margin: 0 50px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  flex: 1; /* Para que ambos botones ocupen el mismo espacio */
+}
+
+.cancel-button {
+  background-color: transparent;
+  border: 2px solid rgba(192, 185, 185, 0.886);
+  color: rgba(192, 185, 185, 0.886);
+}
