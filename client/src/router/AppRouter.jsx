@@ -6,15 +6,19 @@ import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
 import MyBooksPage from '../pages/MyBooksPage';
+import DetailsPage from '../pages/DetailsPage';
+import AllBooksPage from '../pages/AllBooksPage';
 
 export const AppRouter = () => {
   return (
     <Routes>
       <Route path='/' element={<FullWithLayout />}>
         <Route index element={<Home />} />
+        <Route path='/libros' element={<AllBooksPage />} />
+        <Route path='/detalles/:id' element={<DetailsPage />} />
+        <Route path='mis-libros' element={<MyBooksPage />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
-        <Route path='mis-libros' element={<MyBooksPage />} />
         <Route path='*' element={<h1>Error404</h1>} />
       </Route>
     </Routes>

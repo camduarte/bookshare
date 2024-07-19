@@ -3,9 +3,11 @@ import '../styles/components/table.css';
 import { EditIcon, TrashIcon } from '../assets/icons';
 import Button from './ui/Button';
 import DeleteModal from './DeleteModal';
+import FormModalEdit from './FormModalEdit';
 
 const Table = () => {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [openFormModal, setOpenFormModal] = useState(false);
   const data = [
     {
       id: 1,
@@ -51,8 +53,9 @@ const Table = () => {
               <td>{book.genre}</td>
               <td>{book.year}</td>
               <td className='actions'>
-                <Button variant='outline' size='icon'>
+                <Button variant='outline' size='icon'  onClick={() => setOpenFormModal(true)}>
                   <EditIcon />
+                 
                 </Button>
                 <Button
                   variant='outline'
@@ -69,6 +72,7 @@ const Table = () => {
       {deleteModalOpen && (
         <DeleteModal onClose={() => setDeleteModalOpen(false)} />
       )}
+       {openFormModal && <FormModalEdit onClose={() => setOpenFormModal(false)} />}
     </>
   );
 };

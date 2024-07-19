@@ -7,7 +7,7 @@ import Input from '../components/ui/Input';
 import Select from '../components/ui/Select';
 import UserMenu from '../components/UserMenu';
 
-const FormModal = ({ onClose }) => {
+const FormModalEdit = ({ onClose }) => {
   const [formData, setFormData] = useState({
     title: '',
     genre: 'Ficción',
@@ -42,7 +42,7 @@ const FormModal = ({ onClose }) => {
   return (
     <div className='modal'>
       <div className='modal-content'>
-        <h1>Agregar Nuevo Libro</h1>
+        <h1>Editar información del Libro</h1>
         <form onSubmit={handleSubmit}>
           <div className='form-group form1'>
               <Input
@@ -119,7 +119,7 @@ const FormModal = ({ onClose }) => {
           size='default'
           type='submit'         
         >
-          Agregar Libro
+          Actualizar Datos
         </Button>
         </form>
        
@@ -136,4 +136,4 @@ const FormModal = ({ onClose }) => {
   );
 };
 
-export default FormModal;
+export default FormModalEdit;

@@ -1,0 +1,7 @@
+.badge {
+  background-color: var(--ring-color);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+}

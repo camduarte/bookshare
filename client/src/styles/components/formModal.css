@@ -17,11 +17,16 @@
     z-index: 110;
   }
   
+  h1{
+    font-weight: bold;
+    font-size: 20px;
+  }
+
   .modal-content {
     background: white;
     padding: 20px;
     border-radius: 5px;
-    width: 500px;
+    width: 600px;
     max-width: 90%;
   }
   
@@ -30,17 +35,19 @@
   }
   
   .form-group label {
-    display: block;
+    display: flex;
     margin-bottom: 5px;
   }
-  
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
+
+  .form1,  .form2{
+    width:500px;
+    display: flex;
+    justify-content: space-between;
   }
+
+  
+  
+  
   
   .button-form {
     margin-top: 10px;
