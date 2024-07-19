@@ -1,7 +1,10 @@
 package com.hackatong7.server.application.dto;
 
+import com.hackatong7.server.application.validators.ValidPassword;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 /**
@@ -23,6 +26,7 @@ public class RegistroUsuarioDTO {
      */
     @NotBlank(message = "El nombre es obligatorio")
     @Size(min = 1, max = 100, message = "El nombre debe tener entre 1 y 100 caracteres")
+    @Pattern(regexp = "^[A-Za-záéíóúÁÉÍÓÚñÑ ]+$", message = "El nombre solo puede contener letras y espacios")
     private String nombre;
 
     /**
@@ -36,7 +40,7 @@ public class RegistroUsuarioDTO {
      * La contraseña del usuario.
      */
     @NotBlank(message = "La contraseña es obligatoria")
-    @Size(min = 8, message = "La contraseña debe tener al menos 8 caracteres")
+    @ValidPassword
     private String contrasena;
 
     /**
