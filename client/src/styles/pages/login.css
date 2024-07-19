@@ -1,0 +1,59 @@
+/* src/components/LoginCard.css */
+
+.login-card {
+  width: 300px;
+  margin: 0 auto;
+  margin-top: 10%;
+  max-width: 400px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  text-align: center;
+}
+
+.logo {
+  width: 100px;
+  margin-bottom: 20px;
+}
+
+.login-title {
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.input-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.login-button {
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+.register-text {
+  color: #666; /* Gris */
+  justify-content: start;
+  padding-top: 25px;
+  margin-top: 15px;
+  display: inline; /* Mantiene el texto y el enlace en la misma línea */
+}
+
+.register-link {
+  color: #007bff;
+  text-decoration: none;
+  display: inline; /* Mantiene el enlace en la misma línea que el texto */
+}
+
+.register-link:hover {
+  text-decoration: underline;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
