@@ -8,6 +8,7 @@ import Register from '../pages/Register';
 import MyBooksPage from '../pages/MyBooksPage';
 import DetailsPage from '../pages/DetailsPage';
 import AllBooksPage from '../pages/AllBooksPage';
+import { getBaseUrl } from '../lib/getUrl';
 
 export const AppRouter = () => {
   return (

@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Button from '../components/ui/Button';
 import { ArrowRightIcon } from '../assets/icons';
 import HeroBg from '../assets/bg.webp';
 import '../styles/pages/homePage.css';
 import Card from '../components/Card';
+import useBookStore from '../store/bookStore';
 
 export default function Home() {
+  const { books, fetchBooks } = useBookStore();
+
+  useEffect(() => {
+    fetchBooks();
+  }, [fetchBooks]);
+
   return (
     <main className='home-main'>
       <section className='hero-section'>
@@ -45,10 +52,11 @@ export default function Home() {
           <Button variant='outline'>Ciencia Ficción</Button>
         </div>
         <div className='popular-books-cards'>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          {books.map((book) => (
+            <div key={book.id}>
+              <Card {...book} />
+            </div>
+          ))}
         </div>
         <div>
           <Button className='explore-button-books'>
