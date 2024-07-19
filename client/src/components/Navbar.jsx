@@ -20,7 +20,7 @@ const Navbar = () => {
         ) : (
           <div className='authState'>
             <Button>
-              <a href='/login' className='authLogin'>
+              <a href='/auth/login' className='authLogin'>
                 Iniciar Sesión
               </a>
             </Button>

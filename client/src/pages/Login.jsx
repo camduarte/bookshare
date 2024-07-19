@@ -8,6 +8,7 @@ import { LoginSchema } from '../utils/authSchema';
 import Input from '../components/ui/Input';
 import Button from '../components/ui/Button';
 import useAuthStore from '../store/authStore';
+import Logo from '../assets/logo/Logo.svg';
 
 const Login = () => {
   const { login, isLoading, error, clearError, isAuthenticated } =
@@ -53,11 +54,7 @@ const Login = () => {
   return (
     <div className='login-container'>
       <div className='login-card'>
-        <img
-          src='src/assets/logo/Logo.svg'
-          alt='Company Logo'
-          className='logo'
-        />
+        <img src={Logo} alt='Company Logo' className='logo' />
         <h1 className='login-title'>Iniciar Sesión</h1>
 
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -100,7 +97,7 @@ const Login = () => {
         </form>
         <p className='register-text'>
           No tienes una cuenta?{' '}
-          <a href='/register' className='register-link'>
+          <a href='/auth/register' className='register-link'>
             Registrarse
           </a>
         </p>

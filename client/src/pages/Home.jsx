@@ -28,7 +28,7 @@ export default function Home() {
           </p>
           <div className='hero-buttons'>
             <Button className='register-button'>
-              <a href='/register'>Regístrate Gratis</a>
+              <a href='/auth/register'>Regístrate Gratis</a>
             </Button>
             <Button
               variant='ghost'
