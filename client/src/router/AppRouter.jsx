@@ -8,7 +8,7 @@ import Register from '../pages/Register';
 import MyBooksPage from '../pages/MyBooksPage';
 import DetailsPage from '../pages/DetailsPage';
 import AllBooksPage from '../pages/AllBooksPage';
-import { getBaseUrl } from '../lib/getUrl';
+import ProtectedRoute from './ProtectedRoute/ProtectedRoute';
 
 export const AppRouter = () => {
   return (
@@ -17,7 +17,14 @@ export const AppRouter = () => {
         <Route index element={<Home />} />
         <Route path='/libros' element={<AllBooksPage />} />
         <Route path='/detalles/:id' element={<DetailsPage />} />
-        <Route path='mis-libros' element={<MyBooksPage />} />
+        <Route
+          path='mis-libros'
+          element={
+            <ProtectedRoute>
+              <MyBooksPage />
+            </ProtectedRoute>
+          }
+        />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='*' element={<h1>Error404</h1>} />

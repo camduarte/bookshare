@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import '../styles/components/userMenu.css';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
+import useAuthStore from '../store/authStore';
 
 /**
  * @function UserMenu
@@ -11,11 +14,19 @@ import '../styles/components/userMenu.css';
  * @example
  * <UserMenu username='adasdads' logout={options} />
  */
-const UserMenu = ({ logout, username }) => {
+const UserMenu = ({ username }) => {
+  const navigate = useNavigate();
+  const { logout } = useAuthStore();
   const [openMenu, setOpenMenu] = useState(false);
 
   const handleChange = () => {
     setOpenMenu(!openMenu);
+  };
+
+  const handleLogout = () => {
+    logout();
+    toast.success('Sesión cerrada exitosamente');
+    navigate('/login');
   };
 
   const initials = username.substring(0, 2);
@@ -47,7 +58,7 @@ const UserMenu = ({ logout, username }) => {
             </li>
           </ul>
           <hr />
-          <button onClick={logout} className='menuLogout'>
+          <button onClick={handleLogout} className='menuLogout'>
             Cerrar Sesión
           </button>
         </div>
