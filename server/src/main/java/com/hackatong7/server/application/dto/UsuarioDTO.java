@@ -9,7 +9,7 @@ public class UsuarioDTO {
     private String nombre;
     private String correo;
     private String contrasena;
-    private List<LibroDTO> libros;
+    private List<RegistrarLibroDTO> libros;
 
 
 
@@ -17,7 +17,7 @@ public class UsuarioDTO {
 
     }
 
-    public UsuarioDTO( UUID id, String nombre, String correo, String contrasena, List<LibroDTO> libros){
+    public UsuarioDTO( UUID id, String nombre, String correo, String contrasena, List<RegistrarLibroDTO> libros){
         this.id= id;
         this.nombre = nombre;
         this.correo = correo;
@@ -61,11 +61,11 @@ public class UsuarioDTO {
         this.contrasena = contrasena;
     }
 
-    public List<LibroDTO> getLibros() {
+    public List<RegistrarLibroDTO> getLibros() {
         return libros;
     }
 
-    public void setLibros(List<LibroDTO> libros) {
+    public void setLibros(List<RegistrarLibroDTO> libros) {
         this.libros = libros;
     }
 

@@ -1,47 +1,46 @@
 package com.hackatong7.server.application.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import java.util.UUID;
 
-public class LibroDTO {
+public class RegistrarLibroDTO {
     
-    private UUID id;
+    @NotBlank(message = "El título no puede estar en blanco")
+    @Size(min = 1, message = "El título no puede estar vacío")
     private String titulo;
+
+    @NotBlank(message = "El autor no puede estar en blanco")
+    @Size(min = 1, message = "El autor no puede estar vacío")
     private String autor;
+    
     private String descripcion;
     private String genero;
     private String imagenPortada;
-    private UUID usuarioId;
     private String etiquetas;
+    
+    @Pattern(regexp = "\\d{4}", message = "La fecha de publicación debe ser un año de cuatro dígitos")
     private String fechaPublicacion;
 
-    public LibroDTO(){
+    public RegistrarLibroDTO(){
 
 
     }
 
 
-    public LibroDTO(UUID id, String titulo, String autor, String descripcion, String genero, String imagenPortada, UUID usuarioId, String etiquetas, String fechaPublicacion ){
-
-        this.id = id;
+    public RegistrarLibroDTO( String titulo, String autor, String descripcion, String genero, String imagenPortada, String etiquetas, String fechaPublicacion ){
         this.titulo = titulo;
         this.autor = autor;
         this.descripcion = descripcion;
         this.genero = genero;
         this.imagenPortada = imagenPortada;
-        this.usuarioId = usuarioId;
         this.etiquetas = etiquetas;
         this.fechaPublicacion = fechaPublicacion;
-
     }
 
 
-
-    public UUID getId() {
-        return id;
-    }
-    public void setId(UUID id) {
-        this.id = id;
-    }
     public String getTitulo() {
         return titulo;
     }
@@ -71,13 +70,7 @@ public class LibroDTO {
     }
     public void setImagenPortada(String imagenPortada) {
         this.imagenPortada = imagenPortada;
-    }
-    public UUID getUsuarioId() {
-        return usuarioId;
-    }
-    public void setUsuarioId(UUID usuarioId) {
-        this.usuarioId = usuarioId;
-    }
+    }    
     public String getEtiquetas() {
         return etiquetas;
     }
