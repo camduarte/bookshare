@@ -69,4 +69,29 @@ public class LibroMapper {
         return libroDTOs.stream().map(LibroMapper::toEntity).collect(Collectors.toList());
     }
 
+    
+    public static void actualizarEntidad(Libro libroExistente, RegistrarLibroDTO actualizarLibroDTO) {
+        if (actualizarLibroDTO.getTitulo() != null) {
+            libroExistente.setTitulo(actualizarLibroDTO.getTitulo());
+        }
+        if (actualizarLibroDTO.getAutor() != null) {
+            libroExistente.setAutor(actualizarLibroDTO.getAutor());
+        }
+        if (actualizarLibroDTO.getDescripcion() != null) {
+            libroExistente.setDescripcion(actualizarLibroDTO.getDescripcion());
+        }
+        if (actualizarLibroDTO.getGenero() != null) {
+            libroExistente.setGenero(actualizarLibroDTO.getGenero());
+        }
+        if (actualizarLibroDTO.getImagenPortada() != null) {
+            libroExistente.setImagenPortada(actualizarLibroDTO.getImagenPortada());
+        }
+        if (actualizarLibroDTO.getFechaPublicacion() != null) {
+            libroExistente.setFechaPublicacion(actualizarLibroDTO.getFechaPublicacion());
+        }
+        if (actualizarLibroDTO.getEtiquetas() != null) {
+            libroExistente.setEtiquetas(actualizarLibroDTO.getEtiquetas());
+        }
+    }
+    
 }
