@@ -57,7 +57,7 @@ public class AuthServiceImpl implements AuthService {
      */
     @Override
     public Usuario registrarUsuario(RegistroUsuarioDTO registroUsuarioDTO) {
-        if (usuarioDAO.findByCorreoElectronico(registroUsuarioDTO.getEmail()) != null) {
+        if (usuarioDAO.buscarPorCorreoElectronico(registroUsuarioDTO.getEmail()) != null) {
             throw new UsuarioExistenteException("El usuario con el correo electrónico " + registroUsuarioDTO.getEmail() + " ya existe.");
         }
         try {
@@ -78,7 +78,7 @@ public class AuthServiceImpl implements AuthService {
      */
     @Override
     public String loginUsuario(LoginReqDTO loginReqDTO) {
-    	Usuario	usuario = usuarioDAO.findByCorreoElectronico(loginReqDTO.getEmail());
+    	Usuario	usuario = usuarioDAO.buscarPorCorreoElectronico(loginReqDTO.getEmail());
         if (usuario != null && passwordEncoder.matches(loginReqDTO.getPassword(), usuario.getContrasena())) {
         	Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(

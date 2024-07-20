@@ -18,5 +18,5 @@ public interface LibroDAO {
 
     List<Libro> listarLibrosPorUsuarioId(Long usuarioId);
 
-
+    List<Libro> buscarLibros(String palabraClave);
 }

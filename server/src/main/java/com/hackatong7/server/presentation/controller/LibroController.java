@@ -22,6 +22,7 @@ import com.hackatong7.server.domain.entity.Libro;
 import com.hackatong7.server.infrastructure.security.JwtTokenProvider;
 
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -33,13 +34,9 @@ public class LibroController {
 
     @Autowired
     private LibroService libroService;
-    private final JwtTokenProvider jwtTokenProvider;
-
     @Autowired
-    public LibroController(LibroService libroService, JwtTokenProvider jwtTokenProvider) {
-        this.libroService = libroService;
-        this.jwtTokenProvider = jwtTokenProvider;
-    }
+    private JwtTokenProvider jwtTokenProvider;
+
 
     @GetMapping("/get/{id}")
     public ResponseEntity<?> getLibroById(
@@ -54,7 +51,7 @@ public class LibroController {
         return ResponseEntity.ok(libro);
     }
 
-    @PostMapping("/registrar")
+    @PostMapping("/create")
     public ResponseEntity<?> registrarLibro(
             @RequestHeader("Authorization") String token, 
             @Valid @RequestBody RegistrarLibroDTO registrarLibroDTO) {    
@@ -64,7 +61,7 @@ public class LibroController {
         return ResponseEntity.ok(libro);
     }
 
-    @PutMapping("/actualizar/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<?> actualizarLibro(
             @RequestHeader("Authorization") String token, 
             @PathVariable Long id, 
@@ -78,7 +75,7 @@ public class LibroController {
         return ResponseEntity.ok(libroActualizado);
     }
 
-    @DeleteMapping("/eliminar/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> eliminarLibro(
             @RequestHeader("Authorization") String token, 
             @PathVariable Long id) {
@@ -88,18 +85,19 @@ public class LibroController {
         return ResponseEntity.noContent().build();
     }
 
+    
     @GetMapping
     public ResponseEntity<List<LibroDTO>> listarLibrosDelUsuario() {
     	List<LibroDTO> librosDTO = this.libroService.listarLibrosDelUsuario();
     	return ResponseEntity.ok(librosDTO);
     }
     
-    @GetMapping("/librosusuario")
-    public ResponseEntity<List<Libro>> listarLibrosPorUsuario(
-            @RequestHeader("Authorization") String token) {
-        String usuarioCorreo = jwtTokenProvider.getUsuario(token);
-        List<Libro> libros = libroService.listarLibrosPorUsuario(usuarioCorreo);
-        return ResponseEntity.ok(libros);
+   
+    @GetMapping("/search")
+    public ResponseEntity<List<LibroDTO>> buscarLibros(
+            @RequestParam("q") String palabraClave) {
+        List<LibroDTO> librosDTO = libroService.buscar(palabraClave);
+        return ResponseEntity.ok(librosDTO);
     }
 
 }

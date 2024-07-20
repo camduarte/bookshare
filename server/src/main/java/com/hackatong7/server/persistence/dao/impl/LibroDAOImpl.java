@@ -60,4 +60,11 @@ public class LibroDAOImpl implements LibroDAO {
     }
     
 
+    @Override
+    public List<Libro> buscarLibros(String palabraClave){
+        String query = "SELECT l FROM Libro l WHERE LOWER(l.titulo) LIKE LOWER(CONCAT('%', :palabraClave, '%'))";
+        return entityManager.createQuery(query, Libro.class)
+                            .setParameter("palabraClave", palabraClave)
+                            .getResultList();
+    }
 }

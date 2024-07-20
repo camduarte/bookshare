@@ -49,7 +49,7 @@ public class CustomUserDetailsService implements UserDetailsService {
      */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Usuario usuario = usuarioDAO.findByCorreoElectronico(username);
+        Usuario usuario = usuarioDAO.buscarPorCorreoElectronico(username);
         if (usuario == null) {
             throw new UsernameNotFoundException("Usuario no encontrado con el correo electrónico: " + username);
         }

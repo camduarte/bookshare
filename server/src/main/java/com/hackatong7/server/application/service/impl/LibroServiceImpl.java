@@ -38,7 +38,7 @@ public class LibroServiceImpl implements LibroService{
 
     @Override
     public Libro registrarLibro(RegistrarLibroDTO registrarLibroDTO,String usuarioCorreo) {
-        Usuario usuario = usuarioDAO.findByCorreoElectronico(usuarioCorreo);        
+        Usuario usuario = usuarioDAO.buscarPorCorreoElectronico(usuarioCorreo);        
         Libro libro = LibroMapper.toEntity(registrarLibroDTO,usuario);
         return libroDAO.guardarLibro(libro);        
     }
@@ -49,7 +49,7 @@ public class LibroServiceImpl implements LibroService{
         if (libroExistente == null) {
             throw new ResourceNotFoundException("El libro con ID " + id + " no existe");
         }                
-        Usuario usuario = usuarioDAO.findByCorreoElectronico(usuarioCorreo);  
+        Usuario usuario = usuarioDAO.buscarPorCorreoElectronico(usuarioCorreo);  
         if (!libroExistente.getUsuario().getId().equals(usuario.getId())) {
                     throw new UnauthorizedException("No tienes permiso para actualizar este libro");
         }   
@@ -65,26 +65,27 @@ public class LibroServiceImpl implements LibroService{
             throw new ResourceNotFoundException("El libro con ID " + id + " no existe");
         }
         
-        Usuario usuario = usuarioDAO.findByCorreoElectronico(usuarioCorreo);
+        Usuario usuario = usuarioDAO.buscarPorCorreoElectronico(usuarioCorreo);
         if (!libroExistente.getUsuario().getId().equals(usuario.getId())) {
             throw new UnauthorizedException("No tienes permiso para eliminar este libro");
         }        
         libroDAO.eliminarLibro(libroExistente.getId());
     }
  
+   
     @Override
-    public List<Libro> listarLibrosPorUsuario(String usuarioCorreo) {
-        Usuario usuario = usuarioDAO.findByCorreoElectronico(usuarioCorreo);        
-        return libroDAO.listarLibrosPorUsuarioId(usuario.getId());
+    public List<LibroDTO> listarLibrosDelUsuario() {
+       Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+       String correoElectronico = authentication.getName();
+       Usuario usuario = this.usuarioDAO.buscarPorCorreoElectronico(correoElectronico);
+       List<Libro> libros = usuario.getLibros();
+       return LibroMapper.toDTOList(libros);
     }
-
-	@Override
-	public List<LibroDTO> listarLibrosDelUsuario() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String correoElectronico = authentication.getName();
-        Usuario usuario = this.usuarioDAO.findByCorreoElectronico(correoElectronico);
-        List<Libro> libros = usuario.getLibros();
-        return LibroMapper.toDTOList(libros);
-	}
+    
+    @Override
+    public List<LibroDTO> buscar(String palabraClave){
+       List<Libro> libros = libroDAO.buscarLibros(palabraClave); 
+       return LibroMapper.toDTOList(libros);
+    }
 
 }
