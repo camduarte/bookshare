@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author USUARIO
  */
 @RestController
-@RequestMapping("/api/libros")
+@RequestMapping("/api/books")
 public class LibroController {
 
     @Autowired
