@@ -57,12 +57,12 @@ public class AuthServiceImpl implements AuthService {
      */
     @Override
     public Usuario registrarUsuario(RegistroUsuarioDTO registroUsuarioDTO) {
-        if (usuarioDAO.findByCorreoElectronico(registroUsuarioDTO.getCorreo()) != null) {
-            throw new UsuarioExistenteException("El usuario con el correo electrónico " + registroUsuarioDTO.getCorreo() + " ya existe.");
+        if (usuarioDAO.findByCorreoElectronico(registroUsuarioDTO.getEmail()) != null) {
+            throw new UsuarioExistenteException("El usuario con el correo electrónico " + registroUsuarioDTO.getEmail() + " ya existe.");
         }
         try {
             Usuario usuario = UsuarioMapper.toEntity(registroUsuarioDTO);
-            usuario.setContrasena(passwordEncoder.encode(registroUsuarioDTO.getContrasena()));
+            usuario.setContrasena(passwordEncoder.encode(registroUsuarioDTO.getPassword()));
             return usuarioDAO.guardarUsuario(usuario);
         } catch (Exception e) {
         	e.printStackTrace();
@@ -78,12 +78,12 @@ public class AuthServiceImpl implements AuthService {
      */
     @Override
     public String loginUsuario(LoginReqDTO loginReqDTO) {
-    	Usuario	usuario = usuarioDAO.findByCorreoElectronico(loginReqDTO.getCorreo());
-        if (usuario != null && passwordEncoder.matches(loginReqDTO.getContrasena(), usuario.getContrasena())) {
+    	Usuario	usuario = usuarioDAO.findByCorreoElectronico(loginReqDTO.getEmail());
+        if (usuario != null && passwordEncoder.matches(loginReqDTO.getPassword(), usuario.getContrasena())) {
         	Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
-                    		loginReqDTO.getCorreo(),
-                    		loginReqDTO.getContrasena()
+                    		loginReqDTO.getEmail(),
+                    		loginReqDTO.getPassword()
                     )
             );
             SecurityContextHolder.getContext().setAuthentication(authentication);

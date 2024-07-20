@@ -1,5 +1,5 @@
 {
-    "nombre": "Juan Perez",
-    "correo": "juan.perez@example.com",
-    "contrasena": "Eepauvm@88"
+    "name": "Juan Perez",
+    "email": "juan.perez@example.com",
+    "password": "Eepauvm@88"
 }
