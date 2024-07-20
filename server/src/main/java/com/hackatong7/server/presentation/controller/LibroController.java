@@ -22,6 +22,7 @@ import com.hackatong7.server.domain.entity.Libro;
 import com.hackatong7.server.infrastructure.security.JwtTokenProvider;
 
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -92,5 +93,11 @@ public class LibroController {
     }
     
    
+    @GetMapping("/search")
+    public ResponseEntity<List<LibroDTO>> buscarLibros(
+            @RequestParam("q") String palabraClave) {
+        List<LibroDTO> librosDTO = libroService.buscar(palabraClave);
+        return ResponseEntity.ok(librosDTO);
+    }
 
 }
