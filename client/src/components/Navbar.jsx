@@ -16,7 +16,7 @@ const Navbar = () => {
         </a>
         <Input placeholder='Buscar libros...' icon className='searchInput' />
         {isAuthenticated() ? (
-          <UserMenu username='adasdads' />
+          <UserMenu />
         ) : (
           <div className='authState'>
             <Button>

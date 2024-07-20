@@ -5,32 +5,10 @@ import Button from './ui/Button';
 import DeleteModal from './DeleteModal';
 import FormModalEdit from './FormModalEdit';
 
-const Table = () => {
+const Table = ({ books }) => {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [openFormModal, setOpenFormModal] = useState(false);
-  const data = [
-    {
-      id: 1,
-      title: 'El nombre del viento',
-      author: 'Patrick Rothfuss',
-      genre: 'Fantasía',
-      year: 2007,
-    },
-    {
-      id: 2,
-      title: '1984',
-      author: 'George Orwell',
-      genre: 'Distopía',
-      year: 1949,
-    },
-    {
-      id: 3,
-      title: 'Cien años de soledad',
-      author: 'Gabriel García Márquez',
-      genre: 'Realismo mágico',
-      year: 1967,
-    },
-  ];
+
   return (
     <>
       <table className='table-container-header'>
@@ -44,7 +22,7 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          {data.map((book) => (
+          {books?.map((book) => (
             <tr key={book.id}>
               <td>
                 <a href={`detalles/${book.id}`}>{book.title}</a>

@@ -1,23 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/components/userMenu.css';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import useAuthStore from '../store/authStore';
 
-/**
- * @function UserMenu
- * @param {Function} logout - Función que se llama para cerrar sesión del usuario.
- * @param {string} username - Nombre de usuario que se muestra en el menú.
- *
- * @returns {JSX.Element} El componente de menú de usuario.
- *
- * @example
- * <UserMenu username='adasdads' logout={options} />
- */
-const UserMenu = ({ username }) => {
+const UserMenu = () => {
   const navigate = useNavigate();
-  const { logout } = useAuthStore();
+  const { logout, fetchUserData, user } = useAuthStore();
   const [openMenu, setOpenMenu] = useState(false);
+
+  useEffect(() => {
+    fetchUserData();
+  }, [fetchUserData]);
 
   const handleChange = () => {
     setOpenMenu(!openMenu);
@@ -26,10 +20,10 @@ const UserMenu = ({ username }) => {
   const handleLogout = () => {
     logout();
     toast.success('Sesión cerrada exitosamente');
-    navigate('/login');
+    navigate('/auth/login');
   };
 
-  const initials = username.substring(0, 2);
+  const initials = user?.name.substring(0, 2);
 
   return (
     <div className='userMenu'>
