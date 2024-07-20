@@ -19,6 +19,6 @@ public interface UsuarioDAO {
 
     List<Usuario> listarUsuarios();
     
-    Usuario findByCorreoElectronico(String correoElectronico);
+    Usuario buscarPorCorreoElectronico(String correoElectronico);
     
 }

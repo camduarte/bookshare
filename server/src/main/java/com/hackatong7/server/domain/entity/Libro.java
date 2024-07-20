@@ -39,9 +39,6 @@ public class Libro {
 
     @Column(name = "FechaPublicacion")
     private String fechaPublicacion;
-
-    @Column(name = "Etiquetas")
-    private String etiquetas;
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "UsuarioID", nullable = false)
@@ -54,14 +51,13 @@ public class Libro {
 
     }
 
-    public Libro(String titulo, String autor, String descripcion, String genero, String imagenPortada, String fechaPublicacion, String etiquetas, Usuario usuario) {
+    public Libro(String titulo, String autor, String descripcion, String genero, String imagenPortada, String fechaPublicacion, Usuario usuario) {
         this.titulo = titulo;
         this.autor = autor;
         this.descripcion = descripcion != null ? descripcion : "";
         this.genero = genero != null ? genero : "";
         this.imagenPortada = imagenPortada != null ? imagenPortada : "";
         this.fechaPublicacion = fechaPublicacion != null ? fechaPublicacion : "";
-        this.etiquetas = etiquetas != null ? etiquetas : "";
         this.usuario = usuario;
     }
 
@@ -128,14 +124,5 @@ public class Libro {
     public void setFechaPublicacion(String fechaPublicacion) {
         this.fechaPublicacion = fechaPublicacion;
     }
-
-    public String getEtiquetas() {
-        return etiquetas;
-    }
-
-    public void setEtiquetas(String etiquetas) {
-        this.etiquetas = etiquetas;
-    }
-
     
 }

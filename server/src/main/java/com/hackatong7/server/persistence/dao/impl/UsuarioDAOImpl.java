@@ -48,7 +48,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
     }
 
     @Override
-    public Usuario findByCorreoElectronico(String correoElectronico) {
+    public Usuario buscarPorCorreoElectronico(String correoElectronico) {
         List<Usuario> usuarios = entityManager.createQuery("SELECT u FROM Usuario u WHERE u.correo = :correoElectronico", Usuario.class)
                 .setParameter("correoElectronico", correoElectronico)
                 .getResultList();

@@ -10,79 +10,80 @@ public class RegistrarLibroDTO {
     
     @NotBlank(message = "El título no puede estar en blanco")
     @Size(min = 1, message = "El título no puede estar vacío")
-    private String titulo;
+    private String title;
 
     @NotBlank(message = "El autor no puede estar en blanco")
     @Size(min = 1, message = "El autor no puede estar vacío")
-    private String autor;
+    private String author;
     
-    private String descripcion;
-    private String genero;
-    private String imagenPortada;
-    private String etiquetas;
+    private String description;
+    private String genre;
+    private String imgUrl;
     
     @Pattern(regexp = "\\d{4}", message = "La fecha de publicación debe ser un año de cuatro dígitos")
-    private String fechaPublicacion;
+    private String year;
 
     public RegistrarLibroDTO(){
 
 
     }
 
-
-    public RegistrarLibroDTO( String titulo, String autor, String descripcion, String genero, String imagenPortada, String etiquetas, String fechaPublicacion ){
-        this.titulo = titulo;
-        this.autor = autor;
-        this.descripcion = descripcion;
-        this.genero = genero;
-        this.imagenPortada = imagenPortada;
-        this.etiquetas = etiquetas;
-        this.fechaPublicacion = fechaPublicacion;
+    public RegistrarLibroDTO(String title, String author, String description, String genre, String imgUrl, String year) {
+        this.title = title;
+        this.author = author;
+        this.description = description;
+        this.genre = genre;
+        this.imgUrl = imgUrl;
+        this.year = year;
     }
 
+    public String getTitle() {
+        return title;
+    }
 
-    public String getTitulo() {
-        return titulo;
+    public void setTitle(String title) {
+        this.title = title;
     }
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+
+    public String getAuthor() {
+        return author;
     }
-    public String getAutor() {
-        return autor;
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
-    public void setAutor(String autor) {
-        this.autor = autor;
+
+    public String getDescription() {
+        return description;
     }
-    public String getDescripcion() {
-        return descripcion;
+
+    public void setDescription(String description) {
+        this.description = description;
     }
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+
+    public String getGenre() {
+        return genre;
     }
-    public String getGenero() {
-        return genero;
+
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
-    public void setGenero(String genero) {
-        this.genero = genero;
+
+    public String getImgUrl() {
+        return imgUrl;
     }
-    public String getImagenPortada() {
-        return imagenPortada;
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
-    public void setImagenPortada(String imagenPortada) {
-        this.imagenPortada = imagenPortada;
-    }    
-    public String getEtiquetas() {
-        return etiquetas;
+
+    public String getYear() {
+        return year;
     }
-    public void setEtiquetas(String etiquetas) {
-        this.etiquetas = etiquetas;
+
+    public void setYear(String year) {
+        this.year = year;
     }
-    public String getFechaPublicacion() {
-        return fechaPublicacion;
-    }
-    public void setFechaPublicacion(String fechaPublicacion) {
-        this.fechaPublicacion = fechaPublicacion;
-    } 
-    
+
 
 }

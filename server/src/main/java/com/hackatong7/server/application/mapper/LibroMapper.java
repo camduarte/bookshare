@@ -17,18 +17,38 @@ public class LibroMapper {
         if (registrarLibroDTO == null) {
             return null;
         }
-
         Libro libro = new Libro();
-        libro.setTitulo(registrarLibroDTO.getTitulo());
-        libro.setAutor(registrarLibroDTO.getAutor());
-        libro.setDescripcion(registrarLibroDTO.getDescripcion());
-        libro.setGenero(registrarLibroDTO.getGenero());
-        libro.setImagenPortada(registrarLibroDTO.getImagenPortada());
-        libro.setFechaPublicacion(registrarLibroDTO.getFechaPublicacion());        
-        libro.setEtiquetas(registrarLibroDTO.getEtiquetas());
+        libro.setTitulo(registrarLibroDTO.getTitle());
+        libro.setAutor(registrarLibroDTO.getAuthor());
+        libro.setDescripcion(registrarLibroDTO.getDescription());
+        libro.setGenero(registrarLibroDTO.getGenre());
+        libro.setImagenPortada(registrarLibroDTO.getImgUrl());
+        libro.setFechaPublicacion(registrarLibroDTO.getYear());        
         libro.setUsuario(usuario);
         
         return libro;
+    }
+    
+    
+    public static void actualizarEntidad(Libro libroExistente, RegistrarLibroDTO actualizarLibroDTO) {
+        if (actualizarLibroDTO.getTitle() != null) {
+            libroExistente.setTitulo(actualizarLibroDTO.getTitle());
+        }
+        if (actualizarLibroDTO.getAuthor() != null) {
+            libroExistente.setAutor(actualizarLibroDTO.getAuthor());
+        }
+        if (actualizarLibroDTO.getDescription() != null) {
+            libroExistente.setDescripcion(actualizarLibroDTO.getDescription());
+        }
+        if (actualizarLibroDTO.getGenre() != null) {
+            libroExistente.setGenero(actualizarLibroDTO.getGenre());
+        }
+        if (actualizarLibroDTO.getImgUrl() != null) {
+            libroExistente.setImagenPortada(actualizarLibroDTO.getImgUrl());
+        }
+        if (actualizarLibroDTO.getYear() != null) {
+            libroExistente.setFechaPublicacion(actualizarLibroDTO.getYear());
+        }
     }
 
     public static Libro toEntity(LibroDTO libroDTO) {
@@ -70,28 +90,5 @@ public class LibroMapper {
     }
 
     
-    public static void actualizarEntidad(Libro libroExistente, RegistrarLibroDTO actualizarLibroDTO) {
-        if (actualizarLibroDTO.getTitulo() != null) {
-            libroExistente.setTitulo(actualizarLibroDTO.getTitulo());
-        }
-        if (actualizarLibroDTO.getAutor() != null) {
-            libroExistente.setAutor(actualizarLibroDTO.getAutor());
-        }
-        if (actualizarLibroDTO.getDescripcion() != null) {
-            libroExistente.setDescripcion(actualizarLibroDTO.getDescripcion());
-        }
-        if (actualizarLibroDTO.getGenero() != null) {
-            libroExistente.setGenero(actualizarLibroDTO.getGenero());
-        }
-        if (actualizarLibroDTO.getImagenPortada() != null) {
-            libroExistente.setImagenPortada(actualizarLibroDTO.getImagenPortada());
-        }
-        if (actualizarLibroDTO.getFechaPublicacion() != null) {
-            libroExistente.setFechaPublicacion(actualizarLibroDTO.getFechaPublicacion());
-        }
-        if (actualizarLibroDTO.getEtiquetas() != null) {
-            libroExistente.setEtiquetas(actualizarLibroDTO.getEtiquetas());
-        }
-    }
     
 }
