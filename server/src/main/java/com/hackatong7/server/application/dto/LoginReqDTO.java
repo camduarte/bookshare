@@ -17,12 +17,12 @@ public class LoginReqDTO {
     /**
      * El correo electrónico del usuario.
      */
-    private String correo;
+    private String email;
 
     /**
      * La contraseña del usuario.
      */
-    private String contrasena;
+    private String password;
 
     /**
      * Constructor por defecto.
@@ -37,8 +37,8 @@ public class LoginReqDTO {
      * @param contrasena la contraseña del usuario
      */
     public LoginReqDTO(String correo, String contrasena) {
-        this.correo = correo;
-        this.contrasena = contrasena;
+        this.email = correo;
+        this.password = contrasena;
     }
 
     /**
@@ -46,8 +46,8 @@ public class LoginReqDTO {
      * 
      * @return el correo electrónico del usuario
      */
-    public String getCorreo() {
-        return correo;
+    public String getEmail() {
+        return email;
     }
 
     /**
@@ -55,8 +55,8 @@ public class LoginReqDTO {
      * 
      * @param correo el correo electrónico del usuario
      */
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setEmail(String correo) {
+        this.email = correo;
     }
 
     /**
@@ -64,8 +64,8 @@ public class LoginReqDTO {
      * 
      * @return la contraseña del usuario
      */
-    public String getContrasena() {
-        return contrasena;
+    public String getPassword() {
+        return password;
     }
 
     /**
@@ -73,7 +73,7 @@ public class LoginReqDTO {
      * 
      * @param contrasena la contraseña del usuario
      */
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+    public void setPassword(String contrasena) {
+        this.password = contrasena;
     }
 }

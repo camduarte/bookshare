@@ -28,9 +28,9 @@ public class UsuarioMapper {
         }
 
         Usuario usuario = new Usuario();
-        usuario.setNombre(registroUsuarioDTO.getNombre());
-        usuario.setCorreo(registroUsuarioDTO.getCorreo());
-        usuario.setContrasena(registroUsuarioDTO.getContrasena());
+        usuario.setNombre(registroUsuarioDTO.getName());
+        usuario.setCorreo(registroUsuarioDTO.getEmail());
+        usuario.setContrasena(registroUsuarioDTO.getPassword());
         return usuario;
     }
 
@@ -46,9 +46,9 @@ public class UsuarioMapper {
         }
 
         RegistroUsuarioDTO registroUsuarioDTO = new RegistroUsuarioDTO();
-        registroUsuarioDTO.setNombre(usuario.getNombre());
-        registroUsuarioDTO.setCorreo(usuario.getCorreo());
-        registroUsuarioDTO.setContrasena(usuario.getContrasena());
+        registroUsuarioDTO.setName(usuario.getNombre());
+        registroUsuarioDTO.setEmail(usuario.getCorreo());
+        registroUsuarioDTO.setPassword(usuario.getContrasena());
         return registroUsuarioDTO;
     }
 }

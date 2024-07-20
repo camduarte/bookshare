@@ -27,21 +27,21 @@ public class RegistroUsuarioDTO {
     @NotBlank(message = "El nombre es obligatorio")
     @Size(min = 1, max = 100, message = "El nombre debe tener entre 1 y 100 caracteres")
     @Pattern(regexp = "^[A-Za-záéíóúÁÉÍÓÚñÑ ]+$", message = "El nombre solo puede contener letras y espacios")
-    private String nombre;
+    private String name;
 
     /**
      * El correo electrónico del usuario.
      */
     @NotBlank(message = "El correo electrónico es obligatorio")
     @Email(message = "El correo electrónico debe tener un formato válido")
-    private String correo;
+    private String email;
 
     /**
      * La contraseña del usuario.
      */
     @NotBlank(message = "La contraseña es obligatoria")
     @ValidPassword
-    private String contrasena;
+    private String password;
 
     /**
      * Constructor por defecto.
@@ -56,9 +56,9 @@ public class RegistroUsuarioDTO {
      * @param contrasena la contraseña del usuario
      */
     public RegistroUsuarioDTO(String nombre, String correo, String contrasena) {
-        this.nombre = nombre;
-        this.correo = correo;
-        this.contrasena = contrasena;
+        this.name = nombre;
+        this.email = correo;
+        this.password = contrasena;
     }
 
     /**
@@ -66,8 +66,8 @@ public class RegistroUsuarioDTO {
      * 
      * @return el nombre del usuario
      */
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
     /**
@@ -75,8 +75,8 @@ public class RegistroUsuarioDTO {
      * 
      * @param nombre el nombre del usuario
      */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String nombre) {
+        this.name = nombre;
     }
 
     /**
@@ -84,8 +84,8 @@ public class RegistroUsuarioDTO {
      * 
      * @return el correo electrónico del usuario
      */
-    public String getCorreo() {
-        return correo;
+    public String getEmail() {
+        return email;
     }
 
     /**
@@ -93,8 +93,8 @@ public class RegistroUsuarioDTO {
      * 
      * @param correo el correo electrónico del usuario
      */
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setEmail(String correo) {
+        this.email = correo;
     }
 
     /**
@@ -102,8 +102,8 @@ public class RegistroUsuarioDTO {
      * 
      * @return la contraseña del usuario
      */
-    public String getContrasena() {
-        return contrasena;
+    public String getPassword() {
+        return password;
     }
 
     /**
@@ -111,7 +111,7 @@ public class RegistroUsuarioDTO {
      * 
      * @param contrasena la contraseña del usuario
      */
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+    public void setPassword(String contrasena) {
+        this.password = contrasena;
     }
 }
