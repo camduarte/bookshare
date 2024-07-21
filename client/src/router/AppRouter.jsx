@@ -2,15 +2,17 @@ import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { FullWithLayout } from '../hocs/layouts/FullWithLayout';
+import ProtectedRoute from './ProtectedRoute/ProtectedRoute';
+import useAuthStore from '../store/authStore';
+import { AuthLayout } from '../hocs/layouts/AuthLayout';
+
 import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
 import MyBooksPage from '../pages/MyBooksPage';
 import DetailsPage from '../pages/DetailsPage';
 import AllBooksPage from '../pages/AllBooksPage';
-import ProtectedRoute from './ProtectedRoute/ProtectedRoute';
-import useAuthStore from '../store/authStore';
-import { AuthLayout } from '../hocs/layouts/AuthLayout';
+import Error404 from '../pages/Error404';
 
 export const AppRouter = () => {
   const { isAuthenticated } = useAuthStore();
@@ -28,7 +30,7 @@ export const AppRouter = () => {
             </ProtectedRoute>
           }
         />
-        <Route path='*' element={<h1>Error404</h1>} />
+        <Route path='*' element={<Error404 />} />
       </Route>
       <Route
         path='/auth'

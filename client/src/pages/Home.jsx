@@ -48,7 +48,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className='popular-books container'>
+      <section className='container'>
+        <div className='popular-books'>
         <h2 className='popular-books-title'>Libros Populares</h2>
         <div className='popular-books-genres'>
           <Button variant='outline'>Todos</Button>
@@ -69,6 +70,7 @@ export default function Home() {
           <Button asLink href='/libros' className='explore-button-books'>
             Explorar Libros
           </Button>
+        </div>
         </div>
       </section>
     </main>
