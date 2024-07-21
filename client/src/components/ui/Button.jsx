@@ -49,13 +49,18 @@ const Button = React.forwardRef(
       variant = 'default',
       size = 'default',
       asChild = false,
+      asLink = false,
       leftIcon,
       rightIcon,
       ...props
     },
     ref
   ) => {
-    const Comp = asChild ? 'span' : 'button';
+    let Comp;
+    if (asLink) Comp = 'a';
+    else if (asChild) Comp = 'span';
+    else Comp = 'button';
+
     const variantClass = buttonVariants[variant] || buttonVariants.default;
     const sizeClass = buttonSizes[size] || buttonSizes.default;
 

@@ -71,16 +71,22 @@ const FormModal = ({ onClose, book }) => {
     [setValue, trigger]
   );
 
+  const delayedReload = (delay = 200) => {
+    setTimeout(() => {
+      window.location.reload();
+    }, delay);
+  };
+
   const onSubmit = async (data) => {
     try {
       if (book) {
         await updateBook(book.id, data);
         toast.success('Libro actualizado exitosamente');
-        window.location.reload();
+        delayedReload();
       } else {
         await createBook(data);
         toast.success('Libro publicado exitosamente');
-        window.location.reload();
+        delayedReload();
       }
       reset();
       onClose();

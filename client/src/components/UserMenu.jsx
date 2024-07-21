@@ -6,12 +6,13 @@ import useAuthStore from '../store/authStore';
 
 const UserMenu = () => {
   const navigate = useNavigate();
-  const { logout, fetchUserData, user } = useAuthStore();
+  // const { logout, fetchUserData, user } = useAuthStore();
+  const { logout } = useAuthStore();
   const [openMenu, setOpenMenu] = useState(false);
 
-  useEffect(() => {
-    fetchUserData();
-  }, [fetchUserData]);
+  // useEffect(() => {
+  //   fetchUserData();
+  // }, [fetchUserData]);
 
   const handleChange = () => {
     setOpenMenu(!openMenu);
@@ -23,12 +24,12 @@ const UserMenu = () => {
     navigate('/auth/login');
   };
 
-  const initials = user?.name.substring(0, 2);
+  // const initials = user?.name ? user.name.substring(0, 2) : 'In';
 
   return (
     <div className='userMenu'>
       <button onClick={handleChange} className='userProfile'>
-        {initials}
+        In
       </button>
       {openMenu && (
         <div className='menu'>

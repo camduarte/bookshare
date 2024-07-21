@@ -2,8 +2,8 @@ import { axiosClient } from '../lib/axiosClient';
 
 export const registerUser = async (userData) => {
   try {
-    const result = await axiosClient.post('/api/auth/register', userData);
-    return result.data;
+    const res = await axiosClient.post('/api/auth/register', userData);
+    return res.data;
   } catch (error) {
     console.error('Error registrando usuario:', error);
     throw error;
@@ -12,8 +12,8 @@ export const registerUser = async (userData) => {
 
 export const loginUser = async (userData) => {
   try {
-    const result = await axiosClient.post('/api/auth/login', userData);
-    return result.data;
+    const res = await axiosClient.post('/api/auth/login', userData);
+    return res.data;
   } catch (error) {
     console.error('Error iniciando sesión:', error);
     throw error;
@@ -22,10 +22,10 @@ export const loginUser = async (userData) => {
 
 export const getUser = async (token) => {
   try {
-    const result = await axiosClient.get('/user', {
+    const res = await axiosClient.get('/user', {
       headers: { Authorization: `Bearer ${token}` },
     });
-    return result.data;
+    return res.data;
   } catch (error) {
     console.error('Error obteniendo datos del usuario:', error);
     throw error;
@@ -34,12 +34,24 @@ export const getUser = async (token) => {
 
 export const getBooksData = async (token) => {
   try {
-    const result = await axiosClient.get('/api/books', {
+    const res = await axiosClient.get('/api/books', {
       headers: { Authorization: `Bearer ${token}` },
     });
-    return result.data;
+    return res.data;
   } catch (error) {
     console.error('Error obteniendo datos de los libros:', error);
+    throw error;
+  }
+};
+
+export const getBookById = async (token, id) => {
+  try {
+    const res = await axiosClient.get(`/api/books/get/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return res.data;
+  } catch (error) {
+    console.log(`Error al obtener el libro con id ${id}`, error);
     throw error;
   }
 };

@@ -37,10 +37,8 @@ const Login = () => {
       toast.success('Ingresando al sistema');
       navigate('/mis-libros');
     } catch (error) {
-      toast.error(
-        `Ocurrió un error al ingresar al sistema: ${error.message || 'Error desconocido'}`
-      );
-      console.error(error);
+      const errorMessage = error.response?.data?.mensaje || 'Error desconocido';
+      toast.error(`${errorMessage}`);
     }
   };
 

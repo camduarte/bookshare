@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import useDebounce from '../hooks/useDebounce';
 import useBookStore from '../store/bookStore';
 import Input from './ui/Input';
@@ -7,6 +8,7 @@ import '../styles/components/bookSearch.css';
 import Button from './ui/Button';
 
 const BookSearch = () => {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
@@ -27,6 +29,7 @@ const BookSearch = () => {
     clearSearchResults();
     setIsFocused(false);
     inputRef.current.blur();
+    navigate(`/libros?search=${encodeURIComponent(bookTitle)}`);
   };
 
   const handleFocus = () => {
@@ -39,8 +42,9 @@ const BookSearch = () => {
     }, 200);
   };
 
-  const handleKeyDown = (e, bookTitle) => {
-    if (e.key === 'Enter' || e.key === ' ') handleSelect(bookTitle);
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter')
+      navigate(`/libros?search=${encodeURIComponent(searchTerm)}`);
   };
 
   return (
@@ -53,6 +57,7 @@ const BookSearch = () => {
         onChange={handleChange}
         onFocus={handleFocus}
         onBlur={handleBlur}
+        onKeyPress={handleKeyPress}
         icon={<SearchIcon />}
         className='search-input'
       />
