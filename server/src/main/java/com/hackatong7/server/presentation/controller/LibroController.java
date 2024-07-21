@@ -40,7 +40,7 @@ public class LibroController {
     private JwtTokenProvider jwtTokenProvider;
 
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> getLibroById(
             @RequestHeader("Authorization") String token, 
             @PathVariable Long id) {        
@@ -63,21 +63,21 @@ public class LibroController {
         return ResponseEntity.ok(libroDTO);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<?> actualizarLibro(
             @RequestHeader("Authorization") String token, 
             @PathVariable Long id, 
             @Valid @RequestBody RegistrarLibroDTO actualizarLibroDTO) {
         
         String usuarioCorreo = jwtTokenProvider.getUsuario(token);
-        Libro libroActualizado = libroService.actualizarLibro(id, actualizarLibroDTO, usuarioCorreo);
-        if (libroActualizado == null) {
+        LibroDTO libroDTO = libroService.actualizarLibro(id, actualizarLibroDTO, usuarioCorreo);
+        if (libroDTO == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(libroActualizado);
+        return ResponseEntity.ok(libroDTO);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> eliminarLibro(
             @RequestHeader("Authorization") String token, 
             @PathVariable Long id) {

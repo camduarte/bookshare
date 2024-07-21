@@ -43,7 +43,7 @@ public class LibroServiceImpl implements LibroService{
     }
 
     @Override
-    public Libro actualizarLibro(Long id, RegistrarLibroDTO actualizarLibroDTO, String usuarioCorreo) {
+    public LibroDTO actualizarLibro(Long id, RegistrarLibroDTO actualizarLibroDTO, String usuarioCorreo) {
         Libro libroExistente = libroDAO.obtenerLibroPorId(id);
         if (libroExistente == null) {
             throw new ResourceNotFoundException("El libro con ID " + id + " no existe");
@@ -54,7 +54,7 @@ public class LibroServiceImpl implements LibroService{
         }   
         
         LibroMapper.actualizarEntidad(libroExistente, actualizarLibroDTO);
-        return libroDAO.actualizarLibro(libroExistente);   
+        return LibroMapper.toDTO(libroDAO.actualizarLibro(libroExistente));   
     }
 
     @Override
