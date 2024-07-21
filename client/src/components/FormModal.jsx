@@ -12,10 +12,12 @@ import {
   CLOUDINARY_UPLOAD_PRESET,
   CLOUDINARY_CLOUD_NAME,
 } from '../config/cloudinary';
+import useDelayedReload from '../hooks/useDelayedReload';
 
 const FormModal = ({ onClose, book }) => {
   const { createBook, updateBook, isLoading, error, clearError } =
     useBookStore();
+  const delayedReload = useDelayedReload();
 
   const {
     register,
@@ -70,12 +72,6 @@ const FormModal = ({ onClose, book }) => {
     },
     [setValue, trigger]
   );
-
-  const delayedReload = (delay = 200) => {
-    setTimeout(() => {
-      window.location.reload();
-    }, delay);
-  };
 
   const onSubmit = async (data) => {
     try {

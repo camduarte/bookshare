@@ -42,15 +42,12 @@ const Select = React.forwardRef(
       required,
       error,
       errorMessage,
+      value,
+      onChange,
       ...props
     },
     ref
   ) => {
-    const [selectedValue, setSelectedValue] = useState('');
-
-    const handleChange = (event) => {
-      setSelectedValue(event.target.value);
-    };
     return (
       <div className={`inputWithLabel ${className}`}>
         {label && (
@@ -62,8 +59,8 @@ const Select = React.forwardRef(
           id={name}
           name={name}
           className='select'
-          value={selectedValue}
-          onChange={handleChange}
+          value={value}
+          onChange={onChange}
           ref={ref}
           {...props}
         >

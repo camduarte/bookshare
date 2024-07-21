@@ -4,6 +4,8 @@ import '../styles/components/deleteModal.css';
 import { toast } from 'sonner';
 import Button from './ui/Button';
 import useBookStore from '../store/bookStore';
+import useDelayedReload from '../hooks/useDelayedReload';
+import { XIcon } from '../assets/icons';
 
 /**
  *
@@ -14,6 +16,7 @@ import useBookStore from '../store/bookStore';
  */
 const DeleteModal = ({ onClose, book }) => {
   const { deleteBook } = useBookStore();
+  const delayedReload = useDelayedReload();
   /**
    *
    *
@@ -25,7 +28,7 @@ const DeleteModal = ({ onClose, book }) => {
       await deleteBook(id);
       toast.success('Libro eliminado exitosamente');
       onClose();
-      window.location.reload();
+      delayedReload();
     } catch (error) {
       toast.error(
         `Error al eliminar el libro: ${error.message || 'Error desconocido'}`
@@ -35,19 +38,24 @@ const DeleteModal = ({ onClose, book }) => {
   return (
     <div className='modal-overlay'>
       <div className='modal'>
-        <h2>Confirmar Eliminación</h2>
+        <div className='modal-header'>
+          <h2 className='modal-title'>Confirmar Eliminación</h2>
+          <Button
+            variant='ghost'
+            size='icon'
+            onClick={onClose}
+            className='close-button'
+          >
+            <XIcon />
+          </Button>
+        </div>
         <p>¿Estás seguro de que deseas eliminar este libro?</p>
         <div className='modal-buttons'>
-          <Button onClick={onClose} className='cancel-button'>
+          <Button variant='outline' onClick={onClose}>
             Cancelar
           </Button>
 
-          <Button
-            onClick={() => handleDeleteBook(book.id)}
-            className='confirm-button'
-          >
-            Confirmar
-          </Button>
+          <Button onClick={() => handleDeleteBook(book.id)}>Confirmar</Button>
         </div>
       </div>
     </div>

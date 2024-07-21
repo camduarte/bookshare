@@ -1,5 +1,4 @@
 .card {
-  width: 295px;
   display: flex;
   padding: 1rem;
   background-color: #fff;
@@ -53,7 +52,7 @@
   color: var(--star-color);
 }
 
-.card-link {
-  color: #fff;
+.card-button-link {
   text-decoration: none;
+  padding: 0;
 }

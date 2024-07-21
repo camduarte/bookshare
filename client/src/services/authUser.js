@@ -46,7 +46,7 @@ export const getBooksData = async (token) => {
 
 export const getBookById = async (token, id) => {
   try {
-    const res = await axiosClient.get(`/api/books/get/${id}`, {
+    const res = await axiosClient.get(`/api/books/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     return res.data;

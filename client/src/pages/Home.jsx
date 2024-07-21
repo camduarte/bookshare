@@ -4,15 +4,20 @@ import { ArrowRightIcon } from '../assets/icons';
 import HeroBg from '../assets/bg.webp';
 import Card from '../components/Card';
 // import useBookStore from '../store/bookStore';
-import useAuthStore from '../store/authStore';
+import useBookStore from '../store/bookStore';
 import '../styles/pages/homePage.css';
 
 export default function Home() {
-  const { fetchBooksData, booksData } = useAuthStore();
+  const { fetchBooks, allBooks } = useBookStore();
 
   useEffect(() => {
-    fetchBooksData();
-  }, [fetchBooksData]);
+    fetchBooks();
+  }, [fetchBooks]);
+
+  const newBooks = allBooks
+    ?.slice()
+    .sort((a, b) => new Date(b.id) - new Date(a.id))
+    .slice(0, 4);
 
   return (
     <main className='home-main'>
@@ -48,27 +53,21 @@ export default function Home() {
         </div>
       </section>
 
-      <section className='popular-books container'>
-        <h2 className='popular-books-title'>Libros Populares</h2>
-        <div className='popular-books-genres'>
-          <Button variant='outline'>Todos</Button>
-          <Button variant='outline'>Ficción</Button>
-          <Button variant='outline'>No Ficción</Button>
-          <Button variant='outline'>Misterio</Button>
-          <Button variant='outline'>Romance</Button>
-          <Button variant='outline'>Ciencia Ficción</Button>
-        </div>
-        <div className='popular-books-cards'>
-          {booksData?.map((book) => (
-            <div key={book.id}>
-              <Card {...book} />
-            </div>
-          ))}
-        </div>
-        <div>
-          <Button asLink href='/libros' className='explore-button-books'>
-            Explorar Libros
-          </Button>
+      <section className='container'>
+        <div className='popular-books'>
+          <h2 className='popular-books-title'>Libros Recientes</h2>
+          <div className='popular-books-cards'>
+            {newBooks?.map((book) => (
+              <div key={book.id} className='card-popular'>
+                <Card {...book} />
+              </div>
+            ))}
+          </div>
+          <div>
+            <Button asLink href='/libros' className='explore-button-books'>
+              Explorar Libros
+            </Button>
+          </div>
         </div>
       </section>
     </main>

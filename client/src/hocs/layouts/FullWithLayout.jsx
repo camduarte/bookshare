@@ -3,7 +3,7 @@ import Navbar from '../../components/Navbar';
 
 export const FullWithLayout = () => {
   return (
-    <div className=''>
+    <div>
       <div
         style={{
           backgroundColor: 'var(--gray-color)',

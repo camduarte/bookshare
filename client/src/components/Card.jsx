@@ -18,10 +18,8 @@ const Card = (book) => {
           <Badge genre={genre} />
           <span className='card-rating'>★ 4.7</span>
         </div>
-        <Button className='card-button'>
-          <a href={`/detalles/${id}`} className='card-link'>
-            Ver detalles
-          </a>
+        <Button asLink href={`/detalles/${id}`} className='card-button-link'>
+          Ver detalles
         </Button>
       </div>
     </article>
