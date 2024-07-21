@@ -1,0 +1,61 @@
+/* ----------------------------- UserMenu ----------------------------- */
+.userMenu {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.userProfile {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 100%;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: 1px solid var(--ring-color);
+  cursor: pointer;
+}
+
+.menu {
+  position: absolute;
+  background-color: #fff;
+  top: 3rem;
+  width: 14rem;
+  border: 1px solid var(--ring-color);
+  padding: 0.5rem;
+  border-radius: 6px;
+}
+
+.menuItemTitle {
+  color: var(--text-color);
+  font-weight: 600;
+  padding: 0.375rem 0.5rem;
+}
+.menuItems > li {
+  display: flex;
+  flex-direction: column;
+}
+.menuItem {
+  text-decoration: none;
+  color: var(--text-color);
+  border-radius: 4px;
+  padding: 0.375rem 0.5rem;
+}
+.menuItem:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.menuLogout {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  padding: 0.375rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: start;
+}
+.menuLogout:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+}

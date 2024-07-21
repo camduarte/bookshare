@@ -1,0 +1,38 @@
+.book-search-container {
+  display: flex;
+  position: relative;
+  width: 100%;
+  max-width: 50rem;
+  padding: 0 1rem;
+}
+
+.search-input {
+  width: 100%;
+}
+
+.search-results {
+  position: absolute;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  top: 3rem;
+  padding: 1rem;
+  margin: 0;
+  width: 90%;
+  border: 1px solid var(--ring-color);
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.search-result-item {
+  background-color: transparent;
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+.search-result-item:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}

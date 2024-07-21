@@ -1,0 +1,33 @@
+/* -------------------- Table Component ------------------------- */
+.table-container-header {
+  width: 100%;
+  min-width: 800px;
+}
+
+.table-container th,
+.table-container td {
+  border: none;
+  padding: 8px;
+  text-align: left;
+}
+
+.table-container th {
+  font-weight: 600;
+  color: var(--placeholder-color);
+  border-bottom: 1px solid var(--gray-color);
+}
+
+.table-container td {
+  vertical-align: middle;
+  border-bottom: 1px solid var(--gray-color);
+  color: var(--text-color);
+}
+
+.table-container td a {
+  color: var(--text-color);
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
