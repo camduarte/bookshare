@@ -46,11 +46,11 @@ public class LibroController {
             @PathVariable Long id) {        
         
         String usuario = jwtTokenProvider.getUsuario(token);
-        Libro libro = libroService.getLibro(id);      
-        if (libro == null) {
+        LibroDTO libroDTO = libroService.getLibro(id);      
+        if (libroDTO == null) {
             return ResponseEntity.notFound().build();
         }        
-        return ResponseEntity.ok(libro);
+        return ResponseEntity.ok(libroDTO);
     }
 
     @PostMapping("/create")

@@ -31,9 +31,8 @@ public class LibroServiceImpl implements LibroService{
     
 
     @Override
-    public Libro getLibro(Long id) {
-        Libro libro = libroDAO.obtenerLibroPorId(id);
-        return libro ;
+    public LibroDTO getLibro(Long id) {
+        return LibroMapper.toDTO(libroDAO.obtenerLibroPorId(id)) ;
     }
 
     @Override

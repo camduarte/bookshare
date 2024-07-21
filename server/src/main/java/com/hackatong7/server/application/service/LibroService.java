@@ -9,7 +9,7 @@ import com.hackatong7.server.domain.entity.Libro;
 
 public interface LibroService {
     
-    public Libro getLibro(Long id);
+    public LibroDTO getLibro(Long id);
     
     public LibroDTO registrarLibro(RegistrarLibroDTO registrarLibroDTO,String usuarioCorreo);
     
