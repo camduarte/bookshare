@@ -1,10 +1,10 @@
 import React from 'react';
 import LogoBookShare from '../assets/logo/Logo.svg';
-import Input from './ui/Input';
 import Button from './ui/Button';
 import '../styles/components/navbar.css';
 import UserMenu from './UserMenu';
 import useAuthStore from '../store/authStore';
+import BookSearch from './BookSearch';
 
 const Navbar = () => {
   const { isAuthenticated } = useAuthStore();
@@ -14,7 +14,7 @@ const Navbar = () => {
         <a href='/'>
           <img src={LogoBookShare} alt='bookshare-icon' />
         </a>
-        <Input placeholder='Buscar libros...' icon className='searchInput' />
+        <BookSearch />
         {isAuthenticated() ? (
           <UserMenu />
         ) : (
