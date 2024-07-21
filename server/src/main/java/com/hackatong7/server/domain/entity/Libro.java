@@ -1,6 +1,7 @@
 package com.hackatong7.server.domain.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -36,29 +37,28 @@ public class Libro {
     @Column(name = "ImagenPortada")
     private String imagenPortada;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "UsuarioID", nullable = false)
-    private Usuario usuario;
-
     @Column(name = "FechaPublicacion")
     private String fechaPublicacion;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "UsuarioID", nullable = false)
+    @JsonIgnore
+    private Usuario usuario;
 
-    @Column(name = "Etiquetas")
-    private String etiquetas;
+    
 
     public Libro() { 
 
     }
 
-    public Libro(String titulo, String autor, String descripcion, String genero, String imagenPortada, Usuario usuario, String fechaPublicacion, String etiquetas) {
+    public Libro(String titulo, String autor, String descripcion, String genero, String imagenPortada, String fechaPublicacion, Usuario usuario) {
         this.titulo = titulo;
         this.autor = autor;
-        this.descripcion = descripcion;
-        this.genero = genero;
-        this.imagenPortada = imagenPortada;
+        this.descripcion = descripcion != null ? descripcion : "";
+        this.genero = genero != null ? genero : "";
+        this.imagenPortada = imagenPortada != null ? imagenPortada : "";
+        this.fechaPublicacion = fechaPublicacion != null ? fechaPublicacion : "";
         this.usuario = usuario;
-        this.fechaPublicacion = fechaPublicacion;
-        this.etiquetas = etiquetas;
     }
 
     public Long getId() {
@@ -124,14 +124,5 @@ public class Libro {
     public void setFechaPublicacion(String fechaPublicacion) {
         this.fechaPublicacion = fechaPublicacion;
     }
-
-    public String getEtiquetas() {
-        return etiquetas;
-    }
-
-    public void setEtiquetas(String etiquetas) {
-        this.etiquetas = etiquetas;
-    }
-
     
 }

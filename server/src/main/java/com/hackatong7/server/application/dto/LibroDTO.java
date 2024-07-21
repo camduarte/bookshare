@@ -1,95 +1,76 @@
 package com.hackatong7.server.application.dto;
 
-import java.util.UUID;
-
 public class LibroDTO {
-    
-    private UUID id;
-    private String titulo;
-    private String autor;
-    private String descripcion;
-    private String genero;
-    private String imagenPortada;
-    private UUID usuarioId;
-    private String etiquetas;
-    private String fechaPublicacion;
 
-    public LibroDTO(){
+	private Long id;
+        private String title;
+	private String author;
+        private String description;
+	private String genre;
+        private String imgUrl;
+	private String year;
+	
 
+	public LibroDTO() {}
 
-    }
+	public LibroDTO(Long id, String title,  String author, String description, String genre, String imgUrl,
+			String year) {
+		this.id = id;
+                this.title = title;
+		this.author = author;
+                this.description = description;                
+		this.genre = genre;
+                this.imgUrl = imgUrl;
+		this.year = year;
+	}
 
+        
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+        public String getTitle() {
+		return title;
+	}               
+	public void setTitle(String title) {
+		this.title = title;
+	}     
+        
+        public String getAuthor() {
+		return author;
+	}
+	public void setAuthor(String author) {
+		this.author = author;
+	}	   
+        public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getGenre() {
+		return genre;
+	}
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+        public String getImgUrl() {
+		return imgUrl;
+	}
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
+	public String getYear() {
+		return year;
+	}
+	public void setYear(String year) {
+		this.year = year;
+	}
+	
+	
 
-    public LibroDTO(UUID id, String titulo, String autor, String descripcion, String genero, String imagenPortada, UUID usuarioId, String etiquetas, String fechaPublicacion ){
-
-        this.id = id;
-        this.titulo = titulo;
-        this.autor = autor;
-        this.descripcion = descripcion;
-        this.genero = genero;
-        this.imagenPortada = imagenPortada;
-        this.usuarioId = usuarioId;
-        this.etiquetas = etiquetas;
-        this.fechaPublicacion = fechaPublicacion;
-
-    }
-
-
-
-    public UUID getId() {
-        return id;
-    }
-    public void setId(UUID id) {
-        this.id = id;
-    }
-    public String getTitulo() {
-        return titulo;
-    }
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-    public String getAutor() {
-        return autor;
-    }
-    public void setAutor(String autor) {
-        this.autor = autor;
-    }
-    public String getDescripcion() {
-        return descripcion;
-    }
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-    public String getGenero() {
-        return genero;
-    }
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
-    public String getImagenPortada() {
-        return imagenPortada;
-    }
-    public void setImagenPortada(String imagenPortada) {
-        this.imagenPortada = imagenPortada;
-    }
-    public UUID getUsuarioId() {
-        return usuarioId;
-    }
-    public void setUsuarioId(UUID usuarioId) {
-        this.usuarioId = usuarioId;
-    }
-    public String getEtiquetas() {
-        return etiquetas;
-    }
-    public void setEtiquetas(String etiquetas) {
-        this.etiquetas = etiquetas;
-    }
-    public String getFechaPublicacion() {
-        return fechaPublicacion;
-    }
-    public void setFechaPublicacion(String fechaPublicacion) {
-        this.fechaPublicacion = fechaPublicacion;
-    } 
-    
+	
 
 }

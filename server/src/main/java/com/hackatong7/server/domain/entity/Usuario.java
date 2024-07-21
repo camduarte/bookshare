@@ -29,7 +29,7 @@ public class Usuario {
     @Column(name = "Contrasena", nullable = false)
     private String contrasena;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Libro> libros;
 
 

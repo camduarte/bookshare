@@ -67,6 +67,7 @@ public class JwtTokenProvider {
         return claims.getSubject();
     }
 
+    
     /**
      * Valida el token JWT proporcionado.
      * 
@@ -82,4 +83,14 @@ public class JwtTokenProvider {
         }
         return false;
     }
+    
+     public String getUsuario(String token) {
+        if (token != null && token.startsWith("Bearer ")) {
+            token = token.substring(7);
+        }
+        
+        String usuario = getUsernameFromJWT(token);
+        return usuario;
+    }
+     
 }
