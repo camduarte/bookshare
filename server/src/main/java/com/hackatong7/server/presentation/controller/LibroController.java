@@ -59,8 +59,8 @@ public class LibroController {
             @Valid @RequestBody RegistrarLibroDTO registrarLibroDTO) {    
         
         String usuarioCorreo = jwtTokenProvider.getUsuario(token);        
-        Libro libro = libroService.registrarLibro(registrarLibroDTO,usuarioCorreo);        
-        return ResponseEntity.ok(libro);
+        LibroDTO libroDTO = libroService.registrarLibro(registrarLibroDTO,usuarioCorreo);        
+        return ResponseEntity.ok(libroDTO);
     }
 
     @PutMapping("/update/{id}")

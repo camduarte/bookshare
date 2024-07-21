@@ -11,7 +11,7 @@ public interface LibroService {
     
     public Libro getLibro(Long id);
     
-    public Libro registrarLibro(RegistrarLibroDTO registrarLibroDTO,String usuarioCorreo);
+    public LibroDTO registrarLibro(RegistrarLibroDTO registrarLibroDTO,String usuarioCorreo);
     
     public Libro actualizarLibro(Long id,RegistrarLibroDTO actualizarLibroDTO,String usuarioCorreo);
     
