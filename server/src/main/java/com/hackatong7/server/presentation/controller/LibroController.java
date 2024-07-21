@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hackatong7.server.application.dto.LibroDTO;
 import com.hackatong7.server.application.dto.RegistrarLibroDTO;
 import com.hackatong7.server.application.service.LibroService;
-import com.hackatong7.server.domain.entity.Libro;
 import com.hackatong7.server.infrastructure.security.JwtTokenProvider;
 
 import jakarta.validation.Valid;
@@ -45,7 +44,6 @@ public class LibroController {
             @RequestHeader("Authorization") String token, 
             @PathVariable Long id) {        
         
-        String usuario = jwtTokenProvider.getUsuario(token);
         LibroDTO libroDTO = libroService.getLibro(id);      
         if (libroDTO == null) {
             return ResponseEntity.notFound().build();
@@ -85,16 +83,27 @@ public class LibroController {
         String usuarioCorreo = jwtTokenProvider.getUsuario(token);
         libroService.eliminarLibro(id, usuarioCorreo);
         return ResponseEntity.noContent().build();
-    }
-
+    }    
     
     @GetMapping
     public ResponseEntity<List<LibroDTO>> listarLibrosDelUsuario() {
     	List<LibroDTO> librosDTO = this.libroService.listarLibrosDelUsuario();
     	return ResponseEntity.ok(librosDTO);
+    }           
+    
+    @GetMapping("/all")
+    public ResponseEntity<List<LibroDTO>> listarLibros() {
+    	List<LibroDTO> librosDTO = this.libroService.listarLibros();
+    	return ResponseEntity.ok(librosDTO);
     }
     
-   
+    @GetMapping("/byGender")
+    public ResponseEntity<List<LibroDTO>> listarLibrosPorGenero(
+            @RequestParam("genre") String genero) {
+        List<LibroDTO> librosDTO = libroService.listarLibrosPorGenero(genero);
+        return ResponseEntity.ok(librosDTO);
+    }
+    
     @GetMapping("/search")
     public ResponseEntity<List<LibroDTO>> buscarLibros(
             @RequestParam("q") String palabraClave) {

@@ -61,6 +61,14 @@ public class LibroDAOImpl implements LibroDAO {
     
 
     @Override
+    public List<Libro> listarLibrosPorGenero(String genero){
+        String query = "SELECT l FROM Libro l WHERE LOWER(l.genero) = LOWER(:genero)";
+        return entityManager.createQuery(query, Libro.class)
+                            .setParameter("genero", genero)
+                            .getResultList();
+    }
+    
+    @Override
     public List<Libro> buscarLibros(String palabraClave){
         String query = "SELECT l FROM Libro l WHERE LOWER(l.titulo) LIKE LOWER(CONCAT('%', :palabraClave, '%'))";
         return entityManager.createQuery(query, Libro.class)
