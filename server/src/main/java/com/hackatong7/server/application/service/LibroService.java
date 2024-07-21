@@ -13,7 +13,7 @@ public interface LibroService {
     
     public LibroDTO registrarLibro(RegistrarLibroDTO registrarLibroDTO,String usuarioCorreo);
     
-    public Libro actualizarLibro(Long id,RegistrarLibroDTO actualizarLibroDTO,String usuarioCorreo);
+    public LibroDTO actualizarLibro(Long id,RegistrarLibroDTO actualizarLibroDTO,String usuarioCorreo);
     
     public void eliminarLibro(Long id, String usuarioCorreo);
     
