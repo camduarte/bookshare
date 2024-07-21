@@ -1,42 +1,55 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Button from '../components/ui/Button';
 import Card from '../components/Card';
 import '../styles/pages/allBooksPage.css';
 import Select from '../components/ui/Select';
 import useBookStore from '../store/bookStore';
-import useAuthStore from '../store/authStore';
 
 const AllBooksPage = () => {
-  const { searchResults } = useBookStore();
-  const { fetchBooksData, booksData } = useAuthStore();
+  const { filteredBooks, filterBooks, clearFilteredBooks } = useBookStore();
+  const [selectedGenre, setSelectedGenre] = useState('');
 
   useEffect(() => {
-    fetchBooksData();
-  }, [fetchBooksData]);
+    filterBooks({});
+  }, [filterBooks]);
 
   const genreOptions = useMemo(() => {
-    const dataToUse = searchResults.length > 0 ? searchResults : booksData;
-    if (!dataToUse) return [];
-    const uniqueGenres = [...new Set(dataToUse.map((book) => book.genre))];
+    if (!filteredBooks) return [];
+    const uniqueGenres = [...new Set(filteredBooks.map((book) => book.genre))];
     return uniqueGenres.map((genre) => ({
       value: genre,
       label: genre,
     }));
-  }, [booksData, searchResults]);
+  }, [filteredBooks]);
 
-  const booksToDisplay = searchResults.length > 0 ? searchResults : booksData;
+  const handleGenreChange = (e) => {
+    const newGenre = e.target.value;
+    setSelectedGenre(newGenre);
+    filterBooks({ genre: newGenre });
+  };
+
+  const handleClearFilters = () => {
+    setSelectedGenre('');
+    clearFilteredBooks();
+    filterBooks({});
+  };
 
   return (
     <main className='container' style={{ marginTop: '5rem' }}>
       <div className='all-books-container'>
         <h1 className='primary-title'>Explorar Libros</h1>
         <div className='filter-container'>
-          <Select options={genreOptions} placeholder='Filtrar por género' />
-          <Button>Limpiar filtros</Button>
+          <Select
+            options={genreOptions}
+            placeholder='Filtrar por género'
+            value={selectedGenre}
+            onChange={handleGenreChange}
+          />
+          <Button onClick={handleClearFilters}>Limpiar filtros</Button>
         </div>
         <div className='books-cards-container'>
-          {booksToDisplay &&
-            booksToDisplay.map((book) => (
+          {filteredBooks &&
+            filteredBooks.map((book) => (
               <div key={book.id}>
                 <Card {...book} />
               </div>

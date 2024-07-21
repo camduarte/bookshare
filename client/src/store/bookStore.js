@@ -1,11 +1,12 @@
 import { create } from 'zustand';
 import Cookies from 'js-cookie';
-import { getBooks, getBooksById } from '../services/getBooks';
+import { getAllBooks, getBooksById } from '../services/getBooks';
 import { postBook } from '../services/addBook';
 import { editBook } from '../services/editBook';
 import { deleteBook } from '../services/deleteBook';
 import { getSearchData } from '../services/searchBook';
 import { getBookById } from '../services/authUser';
+import { getBooksByGenre } from '../services/filterBooks';
 
 const useBookStore = create((set, get) => {
   const handleApiCall = async (apiCall, errorMessage) => {
@@ -29,18 +30,18 @@ const useBookStore = create((set, get) => {
 
   return {
     token: Cookies.get('authToken') || null,
-    books: [],
+    allBooks: [],
     currentBook: null,
-    searchResults: [],
+    filteredBooks: [],
     isLoading: false,
     error: null,
 
     fetchBooks: async () => {
       const data = await handleApiCall(
-        () => getBooks(),
+        () => getAllBooks(get().token),
         'Error al cargar los libros'
       );
-      if (data) set({ books: data });
+      if (data) set({ allBooks: data });
     },
 
     fetchBookById: async (id) => {
@@ -88,9 +89,28 @@ const useBookStore = create((set, get) => {
       if (data) set({ searchResults: data });
     },
 
+    filterBooks: async (params) => {
+      let apiCall;
+      let errorMessage;
+
+      if (params.searchTerm) {
+        apiCall = () => getSearchData(get().token, params.searchTerm);
+        errorMessage = 'Error al buscar libros';
+      } else if (params.genre) {
+        apiCall = () => getBooksByGenre(get().token, params.genre);
+        errorMessage = 'Error al filtrar libros por género';
+      } else {
+        apiCall = () => getAllBooks(get().token);
+        errorMessage = 'Error al cargar los libros';
+      }
+
+      const data = await handleApiCall(apiCall, errorMessage);
+      if (data) set({ filteredBooks: data });
+    },
+
     clearError: () => set({ error: null }),
 
-    clearSearchResults: () => set({ searchResults: [] }),
+    clearFilteredBooks: () => set({ filteredBooks: [] }),
   };
 });
 

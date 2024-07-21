@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import useDebounce from '../hooks/useDebounce';
 import useBookStore from '../store/bookStore';
 import Input from './ui/Input';
@@ -9,16 +9,24 @@ import Button from './ui/Button';
 
 const BookSearch = () => {
   const navigate = useNavigate();
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchTerm, setSearchTerm] = useState(
+    searchParams.get('search') || ''
+  );
   const [isFocused, setIsFocused] = useState(false);
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
-  const { searchBooks, searchResults, clearSearchResults } = useBookStore();
+  const { filterBooks, filteredBooks, clearFilteredBooks } = useBookStore();
   const inputRef = useRef(null);
 
   useEffect(() => {
-    if (debouncedSearchTerm) searchBooks(debouncedSearchTerm);
-    else clearSearchResults();
-  }, [debouncedSearchTerm, searchBooks, clearSearchResults]);
+    if (debouncedSearchTerm) {
+      filterBooks({ searchTerm: debouncedSearchTerm });
+      setSearchParams({ search: debouncedSearchTerm });
+    } else {
+      filterBooks({});
+      setSearchParams({});
+    }
+  }, [debouncedSearchTerm, filterBooks, setSearchParams]);
 
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
@@ -26,7 +34,7 @@ const BookSearch = () => {
 
   const handleSelect = (bookTitle) => {
     setSearchTerm(bookTitle);
-    clearSearchResults();
+    clearFilteredBooks();
     setIsFocused(false);
     inputRef.current.blur();
     navigate(`/libros?search=${encodeURIComponent(bookTitle)}`);
@@ -44,7 +52,9 @@ const BookSearch = () => {
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter')
-      navigate(`/libros?search=${encodeURIComponent(searchTerm)}`);
+      if (searchTerm)
+        navigate(`/libros?search=${encodeURIComponent(searchTerm)}`);
+      else navigate('/libros');
   };
 
   return (
@@ -61,9 +71,9 @@ const BookSearch = () => {
         icon={<SearchIcon />}
         className='search-input'
       />
-      {isFocused && searchResults && searchResults.length > 0 && (
+      {isFocused && filteredBooks && filteredBooks.length > 0 && searchTerm && (
         <div className='search-results'>
-          {searchResults.map((book) => (
+          {filteredBooks.map((book) => (
             <Button
               key={book.id}
               variant='ghost'
