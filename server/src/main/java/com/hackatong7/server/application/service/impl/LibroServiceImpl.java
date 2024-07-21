@@ -82,6 +82,18 @@ public class LibroServiceImpl implements LibroService{
     }
     
     @Override
+    public List<LibroDTO> listarLibros() {
+       List<Libro> libros = libroDAO.listarLibros();
+       return LibroMapper.toDTOList(libros);
+    }
+    
+    @Override
+    public List<LibroDTO> listarLibrosPorGenero(String genero){
+       List<Libro> libros = libroDAO.listarLibrosPorGenero(genero); 
+       return LibroMapper.toDTOList(libros);
+    }
+    
+    @Override
     public List<LibroDTO> buscar(String palabraClave){
        List<Libro> libros = libroDAO.buscarLibros(palabraClave); 
        return LibroMapper.toDTOList(libros);

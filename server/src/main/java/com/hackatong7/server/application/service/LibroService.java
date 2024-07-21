@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.hackatong7.server.application.dto.LibroDTO;
 import com.hackatong7.server.application.dto.RegistrarLibroDTO;
-import com.hackatong7.server.domain.entity.Libro;
 
 public interface LibroService {
     
@@ -18,6 +17,10 @@ public interface LibroService {
     public void eliminarLibro(Long id, String usuarioCorreo);
     
     public List<LibroDTO> listarLibrosDelUsuario();
+    
+    public List<LibroDTO> listarLibros();
+    
+    public List<LibroDTO> listarLibrosPorGenero(String palabraClave);
     
     public List<LibroDTO> buscar(String palabraClave);
 }
