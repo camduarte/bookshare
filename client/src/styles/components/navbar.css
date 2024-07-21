@@ -6,12 +6,8 @@
   padding: 0.625rem 0;
 }
 
-.authState {
-  display: flex;
-  gap: 1rem;
-}
-
 .authLogin {
   color: #fff;
   text-decoration: none;
+  padding: 0 1rem;
 }

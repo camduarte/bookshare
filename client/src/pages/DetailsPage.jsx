@@ -6,12 +6,13 @@ import useBookStore from '../store/bookStore';
 
 const DetailsPage = () => {
   const { id } = useParams();
-  const { currentBook, fetchBookById } = useBookStore();
+  const { currentBook, fetchBookByIdUser } = useBookStore();
   const { title, imgUrl, author, genre, year, description } = currentBook || {};
+  console.log(currentBook);
 
   useEffect(() => {
-    fetchBookById(id);
-  }, [id, fetchBookById]);
+    fetchBookByIdUser(id);
+  }, [id, fetchBookByIdUser]);
 
   return (
     <main className='container'>

@@ -5,6 +5,7 @@ import { postBook } from '../services/addBook';
 import { editBook } from '../services/editBook';
 import { deleteBook } from '../services/deleteBook';
 import { getSearchData } from '../services/searchBook';
+import { getBookById } from '../services/authUser';
 
 const useBookStore = create((set, get) => {
   const handleApiCall = async (apiCall, errorMessage) => {
@@ -46,6 +47,14 @@ const useBookStore = create((set, get) => {
       const data = await handleApiCall(
         () => getBooksById(id),
         `Error al cargar libro con id ${id}`
+      );
+      if (data) set({ currentBook: data });
+    },
+
+    fetchBookByIdUser: async (id) => {
+      const data = await handleApiCall(
+        () => getBookById(get().token, id),
+        'Error al buscar libros'
       );
       if (data) set({ currentBook: data });
     },

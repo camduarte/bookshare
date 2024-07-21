@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import Button from '../components/ui/Button';
 import { ArrowRightIcon } from '../assets/icons';
 import HeroBg from '../assets/bg.webp';
-import '../styles/pages/homePage.css';
 import Card from '../components/Card';
-import useBookStore from '../store/bookStore';
+// import useBookStore from '../store/bookStore';
 import useAuthStore from '../store/authStore';
+import '../styles/pages/homePage.css';
 
 export default function Home() {
   const { fetchBooksData, booksData } = useAuthStore();
@@ -28,15 +28,21 @@ export default function Home() {
             favorita.
           </p>
           <div className='hero-buttons'>
-            <Button className='register-button'>
-              <a href='/auth/register'>Regístrate Gratis</a>
+            <Button
+              asLink
+              href='/auth/register'
+              className='register-button-home'
+            >
+              Regístrate Gratis
             </Button>
             <Button
               variant='ghost'
               rightIcon={<ArrowRightIcon />}
               className='explore-button'
+              asLink
+              href='/libros'
             >
-              <a href='/libros'>Explorar Libros</a>
+              Explorar Libros
             </Button>
           </div>
         </div>
@@ -60,8 +66,8 @@ export default function Home() {
           ))}
         </div>
         <div>
-          <Button className='explore-button-books'>
-            <a href='/libros'>Explorar Libros</a>
+          <Button asLink href='/libros' className='explore-button-books'>
+            Explorar Libros
           </Button>
         </div>
       </section>

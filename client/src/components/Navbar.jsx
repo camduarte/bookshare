@@ -18,13 +18,9 @@ const Navbar = () => {
         {isAuthenticated() ? (
           <UserMenu />
         ) : (
-          <div className='authState'>
-            <Button>
-              <a href='/auth/login' className='authLogin'>
-                Iniciar Sesión
-              </a>
-            </Button>
-          </div>
+          <Button asLink href='/auth/login' className='authLogin'>
+            Iniciar Sesión
+          </Button>
         )}
       </nav>
     </div>
