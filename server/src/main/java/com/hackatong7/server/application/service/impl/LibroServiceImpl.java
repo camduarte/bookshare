@@ -37,10 +37,10 @@ public class LibroServiceImpl implements LibroService{
     }
 
     @Override
-    public Libro registrarLibro(RegistrarLibroDTO registrarLibroDTO,String usuarioCorreo) {
+    public LibroDTO registrarLibro(RegistrarLibroDTO registrarLibroDTO,String usuarioCorreo) {
         Usuario usuario = usuarioDAO.buscarPorCorreoElectronico(usuarioCorreo);        
         Libro libro = LibroMapper.toEntity(registrarLibroDTO,usuario);
-        return libroDAO.guardarLibro(libro);        
+        return LibroMapper.toDTO(libroDAO.guardarLibro(libro));        
     }
 
     @Override
