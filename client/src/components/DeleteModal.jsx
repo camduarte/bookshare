@@ -1,11 +1,9 @@
 // src/components/ConfirmDeleteModal.js
-import React, { useState } from 'react';
+import React from 'react';
 import '../styles/components/deleteModal.css';
+import { toast } from 'sonner';
 import Button from './ui/Button';
-import { SearchIcon } from '../assets/icons';
-import Input from './ui/Input';
-import Select from './ui/Select';
-import UserMenu from './UserMenu';
+import useBookStore from '../store/bookStore';
 
 /**
  *
@@ -14,13 +12,26 @@ import UserMenu from './UserMenu';
  * @function onConfirm: se llama cuando la acción de eliminación se confirma.
  *
  */
-const DeleteModal = ({ onClose, onConfirm }) => {
+const DeleteModal = ({ onClose, book }) => {
+  const { deleteBook } = useBookStore();
   /**
    *
    *
-   * @param {*} { isOpen, onClose, onConfirm }
-   * @return {*} retorna el modal de confirmación de eliminación
+   * @param {*} { onClose, book }
+   * @return {*} retorna el modal de cerrar modal y obtiene los datos del libro seleccionado
    */
+  const handleDeleteBook = async (id) => {
+    try {
+      await deleteBook(id);
+      toast.success('Libro eliminado exitosamente');
+      onClose();
+      window.location.reload();
+    } catch (error) {
+      toast.error(
+        `Error al eliminar el libro: ${error.message || 'Error desconocido'}`
+      );
+    }
+  };
   return (
     <div className='modal-overlay'>
       <div className='modal'>
@@ -31,7 +42,10 @@ const DeleteModal = ({ onClose, onConfirm }) => {
             Cancelar
           </Button>
 
-          <Button onClick={onConfirm} className='confirm-button'>
+          <Button
+            onClick={() => handleDeleteBook(book.id)}
+            className='confirm-button'
+          >
             Confirmar
           </Button>
         </div>

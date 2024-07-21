@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import '../styles/pages/login.css';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
-import { LoginSchema } from '../utils/authSchema';
+import { LoginSchema } from '../validations/authSchema';
 import Input from '../components/ui/Input';
 import Button from '../components/ui/Button';
 import useAuthStore from '../store/authStore';

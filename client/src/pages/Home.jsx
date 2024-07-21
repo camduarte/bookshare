@@ -5,13 +5,14 @@ import HeroBg from '../assets/bg.webp';
 import '../styles/pages/homePage.css';
 import Card from '../components/Card';
 import useBookStore from '../store/bookStore';
+import useAuthStore from '../store/authStore';
 
 export default function Home() {
-  const { books, fetchBooks } = useBookStore();
+  const { fetchBooksData, booksData } = useAuthStore();
 
   useEffect(() => {
-    fetchBooks();
-  }, [fetchBooks]);
+    fetchBooksData();
+  }, [fetchBooksData]);
 
   return (
     <main className='home-main'>
@@ -52,7 +53,7 @@ export default function Home() {
           <Button variant='outline'>Ciencia Ficción</Button>
         </div>
         <div className='popular-books-cards'>
-          {books.map((book) => (
+          {booksData?.map((book) => (
             <div key={book.id}>
               <Card {...book} />
             </div>

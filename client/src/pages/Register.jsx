@@ -7,7 +7,7 @@ import { toast } from 'sonner';
 import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
 import useAuthStore from '../store/authStore';
-import { RegisterSchema } from '../utils/authSchema';
+import { RegisterSchema } from '../validations/authSchema';
 import Logo from '../assets/logo/Logo.svg';
 
 /**

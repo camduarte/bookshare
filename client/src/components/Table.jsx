@@ -3,11 +3,15 @@ import '../styles/components/table.css';
 import { EditIcon, TrashIcon } from '../assets/icons';
 import Button from './ui/Button';
 import DeleteModal from './DeleteModal';
-import FormModalEdit from './FormModalEdit';
 
-const Table = ({ books }) => {
+const Table = ({ books, onEdit }) => {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-  const [openFormModal, setOpenFormModal] = useState(false);
+  const [bookToDelete, setBookToDelete] = useState(null);
+
+  const handleDeleteClick = (book) => {
+    setBookToDelete(book);
+    setDeleteModalOpen(true);
+  };
 
   return (
     <>
@@ -34,14 +38,14 @@ const Table = ({ books }) => {
                 <Button
                   variant='outline'
                   size='icon'
-                  onClick={() => setOpenFormModal(true)}
+                  onClick={() => onEdit(book)}
                 >
                   <EditIcon />
                 </Button>
                 <Button
                   variant='outline'
                   size='icon'
-                  onClick={() => setDeleteModalOpen(true)}
+                  onClick={() => handleDeleteClick(book)}
                 >
                   <TrashIcon />
                 </Button>
@@ -51,10 +55,10 @@ const Table = ({ books }) => {
         </tbody>
       </table>
       {deleteModalOpen && (
-        <DeleteModal onClose={() => setDeleteModalOpen(false)} />
-      )}
-      {openFormModal && (
-        <FormModalEdit onClose={() => setOpenFormModal(false)} />
+        <DeleteModal
+          onClose={() => setDeleteModalOpen(false)}
+          book={bookToDelete}
+        />
       )}
     </>
   );

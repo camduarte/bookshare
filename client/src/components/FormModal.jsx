@@ -1,125 +1,209 @@
-// AddBookModal.js
-import React, { useState } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import '../styles/components/formModal.css';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'sonner';
 import Button from './ui/Button';
-import { SearchIcon } from '../assets/icons';
 import Input from './ui/Input';
-import Select from './ui/Select';
-import UserMenu from './UserMenu';
+import useBookStore from '../store/bookStore';
+import { bookSchema } from '../validations/bookSchema';
+import { XIcon } from '../assets/icons';
+import {
+  CLOUDINARY_UPLOAD_PRESET,
+  CLOUDINARY_CLOUD_NAME,
+} from '../config/cloudinary';
 
-const FormModal = ({ onClose }) => {
-  const [formData, setFormData] = useState({
-    title: '',
-    genre: 'Ficción',
-    author: '',
-    publicationYear: '2024',
-    description: '',
-    cover: null,
-  });
+const FormModal = ({ onClose, book }) => {
+  const { createBook, updateBook, isLoading, error, clearError } =
+    useBookStore();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    trigger,
+    reset,
+    setValue,
+  } = useForm({ resolver: zodResolver(bookSchema) });
+
+  useEffect(() => {
+    if (book) {
+      setValue('title', book.title);
+      setValue('author', book.author);
+      setValue('genre', book.genre);
+      setValue('year', book.year);
+      setValue('description', book.description);
+      setValue('imgUrl', book.imgUrl);
+    }
+  }, [book, setValue]);
+
+  const handleInputChange = async (field) => {
+    await trigger(field);
   };
 
-  const handleFileChange = (e) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      cover: e.target.files[0],
-    }));
+  const handleFileUpload = useCallback(
+    async (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+
+        try {
+          const response = await fetch(
+            `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`,
+            {
+              method: 'POST',
+              body: formData,
+            }
+          );
+
+          if (!response.ok) throw new Error('Network response was not ok');
+
+          const data = await response.json();
+          setValue('imgUrl', data.secure_url);
+          await trigger('imgUrl');
+        } catch (error) {
+          console.error('Error uploading to Cloudinary', error);
+        }
+      }
+    },
+    [setValue, trigger]
+  );
+
+  const onSubmit = async (data) => {
+    try {
+      if (book) {
+        await updateBook(book.id, data);
+        toast.success('Libro actualizado exitosamente');
+        window.location.reload();
+      } else {
+        await createBook(data);
+        toast.success('Libro publicado exitosamente');
+        window.location.reload();
+      }
+      reset();
+      onClose();
+    } catch (error) {
+      toast.error(
+        `Ocurrió un error al publicar libro: ${error.message || 'Error desconocido'}`
+      );
+      console.error(error);
+    }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Aquí puedes manejar el envío del formulario
-    console.log(formData);
-    onClose();
-  };
+  useEffect(() => {
+    if (error) {
+      toast.error(`Error: ${error}`);
+      clearError();
+    }
+  }, [error, clearError]);
 
   return (
-    <div className='modal'>
-      <div className='modal-content'>
-        <h1>Agregar Nuevo Libro</h1>
-        <form onSubmit={handleSubmit}>
-          <div className='form-group form1'>
-            <Input
-              label='Titulo'
-              placeholder='ingresa el título del libro'
-              value={formData.title}
-              onChange={handleChange}
-              required
-            />
-            <Select
-              label='Género'
-              name='genre'
-              value={formData.genre}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className='form-group form2'>
-            <Input
-              label='Autor'
-              placeholder='Ingresa el nombre del autor'
-              value={formData.author}
-              type='text'
-              name='author'
-              onChange={handleChange}
-              required
-            />
-
-            <Input
-              label='Año de publicación'
-              placeholder='2024'
-              value={formData.publicationYear}
-              type='number'
-              name='publicationYear'
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div className='form-group'>
-            <Input
-              label='Descripción'
-              placeholder='Ingresa una descripción'
-              value={formData.description}
-              type='textarea'
-              name='description'
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className='form-group'>
-            <Input
-              label='Portada'
-              placeholder='Agregar portada'
-              value={formData.author}
-              type='file'
-              name='cover'
-              onChange={handleFileChange}
-              Icon
-              required
-            />
-          </div>
-
-          <Button variant='default' size='default' type='submit'>
-            Agregar Libro
+    <div className='modal-container'>
+      <form onSubmit={handleSubmit(onSubmit)} className='modal-content'>
+        <div className='modal-header'>
+          <h1 className='modal-title'>
+            {book ? 'Editar Libro' : 'Agregar Nuevo Libro'}
+          </h1>
+          <Button
+            variant='ghost'
+            size='icon'
+            onClick={onClose}
+            className='close-button'
+          >
+            <XIcon />
           </Button>
-        </form>
-
-        <Button
-          variant='outline'
-          size='default'
-          type='submit'
-          onClick={onClose}
-        >
-          Volver
-        </Button>
-      </div>
+        </div>
+        <div className='modal-body'>
+          <div className='form-grid'>
+            <div>
+              <Input
+                label='Título'
+                type='text'
+                name='title'
+                placeholder='Ingresa el título del libro'
+                {...register('title')}
+                onBlur={() => handleInputChange('title')}
+                isError={!!errors.title}
+                errorMessage={errors.title?.message}
+                required
+                className='form-input'
+              />
+              <Input
+                label='Autor'
+                type='text'
+                name='author'
+                placeholder='Ingresa el nombre del autor'
+                {...register('author')}
+                onBlur={() => handleInputChange('author')}
+                isError={!!errors.author}
+                errorMessage={errors.author?.message}
+                required
+                className='form-input'
+              />
+            </div>
+            <div>
+              <Input
+                label='Género'
+                type='text'
+                name='genre'
+                placeholder='Ingresa el género del libro'
+                {...register('genre')}
+                onBlur={() => handleInputChange('genre')}
+                isError={!!errors.genre}
+                errorMessage={errors.genre?.message}
+                required
+                className='form-input'
+              />
+              <Input
+                label='Año de Publicación'
+                type='number'
+                name='year'
+                placeholder='Ingresa el año de publicación'
+                {...register('year')}
+                onBlur={() => handleInputChange('year')}
+                isError={!!errors.year}
+                errorMessage={errors.year?.message}
+                required
+                className='form-input'
+              />
+            </div>
+          </div>
+          <Input
+            label='Descripción'
+            type='text'
+            name='description'
+            placeholder='Ingresa una descripción'
+            {...register('description')}
+            onBlur={() => handleInputChange('description')}
+            isError={!!errors.description}
+            errorMessage={errors.description?.message}
+            required
+            className='form-input'
+          />
+          <div className='file-input'>
+            <Input
+              label='Portada del Libro'
+              type='file'
+              accept='image/*'
+              onChange={handleFileUpload}
+              className='form-input'
+              required={!book}
+            />
+          </div>
+        </div>
+        <div className='modal-footer'>
+          <Button
+            type='submit'
+            variant='default'
+            size='default'
+            disabled={isLoading}
+          >
+            {book ? 'Actualizar Libro' : 'Agregar Libro'}
+          </Button>
+        </div>
+      </form>
     </div>
   );
 };

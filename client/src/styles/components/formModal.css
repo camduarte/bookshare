@@ -1,10 +1,5 @@
-/* App.css */
-.App {
-  text-align: center;
-}
-
 /* AddBookModal.css */
-.modal {
+.modal-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -17,36 +12,37 @@
   z-index: 110;
 }
 
-h1 {
-  font-weight: bold;
-  font-size: 20px;
-}
-
 .modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 5px;
-  width: 600px;
-  max-width: 90%;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 0.5rem;
 }
 
-.form-group {
-  margin-bottom: 15px;
-}
-
-.form-group label {
+.modal-header {
   display: flex;
-  margin-bottom: 5px;
-}
-
-.form1,
-.form2 {
-  width: 500px;
-  display: flex;
+  align-items: center;
   justify-content: space-between;
+  margin-bottom: 1rem;
 }
 
-.button-form {
-  margin-top: 10px;
-  padding: 10px 20px;
+.modal-title {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+}
+
+.form-grid {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-input {
+  margin-top: 1rem;
+}
+
+.modal-footer {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  margin-top: 1rem;
 }
