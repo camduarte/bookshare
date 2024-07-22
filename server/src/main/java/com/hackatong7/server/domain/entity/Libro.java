@@ -22,10 +22,10 @@ public class Libro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
-    @Column(name = "Titulo", nullable = false)
+    @Column(name = "Titulo", columnDefinition = "TEXT", nullable = false)
     private String titulo;
 
-    @Column(name = "Autor", nullable = false)
+    @Column(name = "Autor", columnDefinition = "TEXT", nullable = false)
     private String autor;
 
     @Column(name = "Descripcion", columnDefinition = "TEXT")
@@ -34,7 +34,7 @@ public class Libro {
     @Column(name = "Genero")
     private String genero;
 
-    @Column(name = "ImagenPortada")
+    @Column(name = "ImagenPortada", columnDefinition = "TEXT")
     private String imagenPortada;
 
     @Column(name = "FechaPublicacion")

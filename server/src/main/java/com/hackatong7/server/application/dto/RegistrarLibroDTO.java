@@ -3,6 +3,7 @@ package com.hackatong7.server.application.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import org.hibernate.validator.constraints.URL;
 
 public class RegistrarLibroDTO {
     
@@ -16,6 +17,8 @@ public class RegistrarLibroDTO {
     
     private String description;
     private String genre;
+    
+    @URL(message = "La URL de la imagen debe ser válida")
     private String imgUrl;
     
     @Pattern(regexp = "\\d{4}", message = "La fecha de publicación debe ser un año de cuatro dígitos")
