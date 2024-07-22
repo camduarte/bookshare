@@ -1,4 +1,3 @@
-
 package com.hackatong7.server.application.mapper;
 
 import java.util.List;
@@ -9,11 +8,10 @@ import com.hackatong7.server.application.dto.RegistrarLibroDTO;
 import com.hackatong7.server.domain.entity.Libro;
 import com.hackatong7.server.domain.entity.Usuario;
 
-
-
 public class LibroMapper {
-    
-    public static Libro toEntity(RegistrarLibroDTO registrarLibroDTO,Usuario usuario) {
+
+    public static Libro toEntity(RegistrarLibroDTO registrarLibroDTO, 
+    		Usuario usuario) {
         if (registrarLibroDTO == null) {
             return null;
         }
@@ -23,14 +21,14 @@ public class LibroMapper {
         libro.setDescripcion(registrarLibroDTO.getDescription());
         libro.setGenero(registrarLibroDTO.getGenre());
         libro.setImagenPortada(registrarLibroDTO.getImgUrl());
-        libro.setFechaPublicacion(registrarLibroDTO.getYear());        
+        libro.setFechaPublicacion(registrarLibroDTO.getYear());
         libro.setUsuario(usuario);
-        
+
         return libro;
     }
-    
-    
-    public static void actualizarEntidad(Libro libroExistente, RegistrarLibroDTO actualizarLibroDTO) {
+
+    public static void actualizarEntidad(Libro libroExistente, 
+    		RegistrarLibroDTO actualizarLibroDTO) {
         if (actualizarLibroDTO.getTitle() != null) {
             libroExistente.setTitulo(actualizarLibroDTO.getTitle());
         }
@@ -89,6 +87,4 @@ public class LibroMapper {
         return libroDTOs.stream().map(LibroMapper::toEntity).collect(Collectors.toList());
     }
 
-    
-    
 }

@@ -1,4 +1,3 @@
-
 package com.hackatong7.server.application.service.impl;
 
 import java.util.List;
@@ -19,27 +18,25 @@ import com.hackatong7.server.domain.exceptions.UnauthorizedException;
 import com.hackatong7.server.persistence.dao.LibroDAO;
 import com.hackatong7.server.persistence.dao.UsuarioDAO;
 
-
 @Service
 public class LibroServiceImpl implements LibroService{
 
     @Autowired
     private UsuarioDAO usuarioDAO;
-    
+
     @Autowired
     private LibroDAO libroDAO;
-    
 
     @Override
     public LibroDTO getLibro(Long id) {
-        return LibroMapper.toDTO(libroDAO.obtenerLibroPorId(id)) ;
+        return LibroMapper.toDTO(libroDAO.obtenerLibroPorId(id));
     }
 
     @Override
     public LibroDTO registrarLibro(RegistrarLibroDTO registrarLibroDTO,String usuarioCorreo) {
-        Usuario usuario = usuarioDAO.buscarPorCorreoElectronico(usuarioCorreo);        
+        Usuario usuario = usuarioDAO.buscarPorCorreoElectronico(usuarioCorreo);
         Libro libro = LibroMapper.toEntity(registrarLibroDTO,usuario);
-        return LibroMapper.toDTO(libroDAO.guardarLibro(libro));        
+        return LibroMapper.toDTO(libroDAO.guardarLibro(libro));
     }
 
     @Override
@@ -47,14 +44,14 @@ public class LibroServiceImpl implements LibroService{
         Libro libroExistente = libroDAO.obtenerLibroPorId(id);
         if (libroExistente == null) {
             throw new ResourceNotFoundException("El libro con ID " + id + " no existe");
-        }                
-        Usuario usuario = usuarioDAO.buscarPorCorreoElectronico(usuarioCorreo);  
+        }
+        Usuario usuario = usuarioDAO.buscarPorCorreoElectronico(usuarioCorreo);
         if (!libroExistente.getUsuario().getId().equals(usuario.getId())) {
                     throw new UnauthorizedException("No tienes permiso para actualizar este libro");
-        }   
-        
+        }
+
         LibroMapper.actualizarEntidad(libroExistente, actualizarLibroDTO);
-        return LibroMapper.toDTO(libroDAO.actualizarLibro(libroExistente));   
+        return LibroMapper.toDTO(libroDAO.actualizarLibro(libroExistente));
     }
 
     @Override
@@ -63,15 +60,14 @@ public class LibroServiceImpl implements LibroService{
         if (libroExistente == null) {
             throw new ResourceNotFoundException("El libro con ID " + id + " no existe");
         }
-        
+
         Usuario usuario = usuarioDAO.buscarPorCorreoElectronico(usuarioCorreo);
         if (!libroExistente.getUsuario().getId().equals(usuario.getId())) {
             throw new UnauthorizedException("No tienes permiso para eliminar este libro");
-        }        
+        }
         libroDAO.eliminarLibro(libroExistente.getId());
     }
- 
-   
+
     @Override
     public List<LibroDTO> listarLibrosDelUsuario() {
        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -80,22 +76,22 @@ public class LibroServiceImpl implements LibroService{
        List<Libro> libros = usuario.getLibros();
        return LibroMapper.toDTOList(libros);
     }
-    
+
     @Override
     public List<LibroDTO> listarLibros() {
        List<Libro> libros = libroDAO.listarLibros();
        return LibroMapper.toDTOList(libros);
     }
-    
+
     @Override
     public List<LibroDTO> listarLibrosPorGenero(String genero){
-       List<Libro> libros = libroDAO.listarLibrosPorGenero(genero); 
+       List<Libro> libros = libroDAO.listarLibrosPorGenero(genero);
        return LibroMapper.toDTOList(libros);
     }
-    
+
     @Override
     public List<LibroDTO> buscar(String palabraClave){
-       List<Libro> libros = libroDAO.buscarLibros(palabraClave); 
+       List<Libro> libros = libroDAO.buscarLibros(palabraClave);
        return LibroMapper.toDTOList(libros);
     }
 

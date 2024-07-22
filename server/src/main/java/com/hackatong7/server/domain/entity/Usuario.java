@@ -1,6 +1,5 @@
 package com.hackatong7.server.domain.entity;
 
-
 import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -32,7 +31,6 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Libro> libros;
 
-
     public Usuario() {
     }
 
@@ -42,8 +40,6 @@ public class Usuario {
         this.contrasena = contrasena;
     }
 
-
-    
     public Long getId() {
         return  id;
     }
@@ -84,4 +80,3 @@ public class Usuario {
     }
 
 }
-

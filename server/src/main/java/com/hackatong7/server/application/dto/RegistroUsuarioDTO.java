@@ -25,7 +25,7 @@ public class RegistroUsuarioDTO {
      * El nombre del usuario.
      */
     @NotBlank(message = "El nombre es obligatorio")
-    @Size(min = 1, max = 100, message = "El nombre debe tener entre 1 y 100 caracteres")
+    @Size(min = 1, max = 50, message = "El nombre debe tener entre 1 y 50 caracteres")
     @Pattern(regexp = "^[A-Za-záéíóúÁÉÍÓÚñÑ ]+$", message = "El nombre solo puede contener letras y espacios")
     private String name;
 

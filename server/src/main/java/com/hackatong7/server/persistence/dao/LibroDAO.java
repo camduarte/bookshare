@@ -5,7 +5,7 @@ import java.util.List;
 import com.hackatong7.server.domain.entity.Libro;
 
 public interface LibroDAO {
-    
+
     Libro guardarLibro(Libro libro);
 
     Libro actualizarLibro(Libro libro);
@@ -17,8 +17,9 @@ public interface LibroDAO {
     List<Libro> listarLibros();
 
     List<Libro> listarLibrosPorUsuarioId(Long usuarioId);
-    
+
     List<Libro> listarLibrosPorGenero(String genero);
 
     List<Libro> buscarLibros(String palabraClave);
+
 }
