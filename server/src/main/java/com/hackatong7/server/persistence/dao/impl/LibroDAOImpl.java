@@ -11,8 +11,6 @@ import jakarta.persistence.PersistenceContext;
 import com.hackatong7.server.domain.entity.Libro;
 import com.hackatong7.server.persistence.dao.LibroDAO;
 
-
-
 @Repository
 @Transactional
 public class LibroDAOImpl implements LibroDAO {
@@ -50,15 +48,12 @@ public class LibroDAOImpl implements LibroDAO {
                             .getResultList();
     }
 
-
-
     @Override
     public List<Libro> listarLibrosPorUsuarioId(Long usuarioId) {
         return entityManager.createQuery("SELECT l FROM Libro l WHERE l.usuario.id = :usuarioId", Libro.class)
         .setParameter("usuarioId", usuarioId)
         .getResultList();
     }
-    
 
     @Override
     public List<Libro> listarLibrosPorGenero(String genero){
@@ -67,7 +62,6 @@ public class LibroDAOImpl implements LibroDAO {
                             .setParameter("genero", genero)
                             .getResultList();
     }
-    
     @Override
     public List<Libro> buscarLibros(String palabraClave){
         String query = "SELECT l FROM Libro l WHERE LOWER(l.titulo) LIKE LOWER(CONCAT('%', :palabraClave, '%'))";

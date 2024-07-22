@@ -24,7 +24,7 @@ import jakarta.validation.Payload;
 @Target({ ElementType.FIELD, ElementType.PARAMETER })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ValidPassword {
-    
+
     /**
      * Mensaje de error que se mostrará si la contraseña no cumple con los requisitos de seguridad.
      * 

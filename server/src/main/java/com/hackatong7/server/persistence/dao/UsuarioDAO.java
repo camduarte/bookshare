@@ -5,8 +5,6 @@ import java.util.List;
 
 import com.hackatong7.server.domain.entity.Usuario;
 
-
-
 public interface UsuarioDAO {
 
     Usuario guardarUsuario(Usuario usuario);
@@ -18,7 +16,7 @@ public interface UsuarioDAO {
     Usuario obtenerUsuarioPorId(Long id);
 
     List<Usuario> listarUsuarios();
-    
+
     Usuario buscarPorCorreoElectronico(String correoElectronico);
-    
+
 }

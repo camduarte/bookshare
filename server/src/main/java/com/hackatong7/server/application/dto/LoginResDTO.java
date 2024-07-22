@@ -13,7 +13,7 @@ package com.hackatong7.server.application.dto;
  * @since 2024-07-18
  */
 public class LoginResDTO {
-    
+
     /**
      * El token de autenticación del usuario.
      */

@@ -1,6 +1,5 @@
 package com.hackatong7.server.domain.entity;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,12 +11,10 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
-
 @Entity
 @Table(name = "Libros")
 public class Libro {
-    
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
@@ -39,17 +36,13 @@ public class Libro {
 
     @Column(name = "FechaPublicacion")
     private String fechaPublicacion;
-    
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "UsuarioID", nullable = false)
     @JsonIgnore
     private Usuario usuario;
 
-    
-
-    public Libro() { 
-
-    }
+    public Libro() {}
 
     public Libro(String titulo, String autor, String descripcion, String genero, String imagenPortada, String fechaPublicacion, Usuario usuario) {
         this.titulo = titulo;
@@ -124,5 +117,5 @@ public class Libro {
     public void setFechaPublicacion(String fechaPublicacion) {
         this.fechaPublicacion = fechaPublicacion;
     }
-    
+
 }

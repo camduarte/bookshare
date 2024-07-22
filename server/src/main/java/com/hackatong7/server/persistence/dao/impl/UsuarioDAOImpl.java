@@ -10,11 +10,10 @@ import com.hackatong7.server.persistence.dao.UsuarioDAO;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
-
 @Repository
 @Transactional
 public class UsuarioDAOImpl implements UsuarioDAO {
-    
+
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -54,6 +53,5 @@ public class UsuarioDAOImpl implements UsuarioDAO {
                 .getResultList();
         return usuarios.isEmpty() ? null : usuarios.get(0);
     }
-
 
 }

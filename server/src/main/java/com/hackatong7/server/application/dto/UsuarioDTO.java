@@ -5,29 +5,23 @@ import java.util.List;
 
 public class UsuarioDTO {
  
-    private UUID id;
-    private String nombre;
-    private String correo;
-    private String contrasena;
-    private List<RegistrarLibroDTO> libros;
+	private UUID id;
+	private String nombre;
+	private String correo;
+	private String contrasena;
+	private List<RegistrarLibroDTO> libros;
 
+    public UsuarioDTO() {}
 
-
-    public UsuarioDTO(){
-
-    }
-
-    public UsuarioDTO( UUID id, String nombre, String correo, String contrasena, List<RegistrarLibroDTO> libros){
-        this.id= id;
-        this.nombre = nombre;
-        this.correo = correo;
-        this.contrasena = contrasena;
-        this.libros = libros;
+    public UsuarioDTO( UUID id, String nombre, String correo, String contrasena, 
+    		List<RegistrarLibroDTO> libros){
+		this.id= id;
+		this.nombre = nombre;
+		this.correo = correo;
+		this.contrasena = contrasena;
+		this.libros = libros;
 
     }
-
-
-
 
     public UUID getId() {
         return id;

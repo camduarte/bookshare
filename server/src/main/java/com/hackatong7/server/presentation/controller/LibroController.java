@@ -1,4 +1,3 @@
-
 package com.hackatong7.server.presentation.controller;
 
 import java.util.List;
@@ -38,13 +37,12 @@ public class LibroController {
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
 
-
     @GetMapping("/{id}")
     public ResponseEntity<?> getLibroById(
-            @RequestHeader("Authorization") String token, 
-            @PathVariable Long id) {        
-        
-        LibroDTO libroDTO = libroService.getLibro(id);      
+            @RequestHeader("Authorization") String token,
+            @PathVariable Long id) {
+
+        LibroDTO libroDTO = libroService.getLibro(id);
         if (libroDTO == null) {
             return ResponseEntity.notFound().build();
         }        
@@ -53,20 +51,20 @@ public class LibroController {
 
     @PostMapping("/create")
     public ResponseEntity<?> registrarLibro(
-            @RequestHeader("Authorization") String token, 
-            @Valid @RequestBody RegistrarLibroDTO registrarLibroDTO) {    
+            @RequestHeader("Authorization") String token,
+            @Valid @RequestBody RegistrarLibroDTO registrarLibroDTO) {
         
-        String usuarioCorreo = jwtTokenProvider.getUsuario(token);        
-        LibroDTO libroDTO = libroService.registrarLibro(registrarLibroDTO,usuarioCorreo);        
+        String usuarioCorreo = jwtTokenProvider.getUsuario(token);
+        LibroDTO libroDTO = libroService.registrarLibro(registrarLibroDTO,usuarioCorreo);
         return ResponseEntity.ok(libroDTO);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<?> actualizarLibro(
             @RequestHeader("Authorization") String token, 
-            @PathVariable Long id, 
+            @PathVariable Long id,
             @Valid @RequestBody RegistrarLibroDTO actualizarLibroDTO) {
-        
+
         String usuarioCorreo = jwtTokenProvider.getUsuario(token);
         LibroDTO libroDTO = libroService.actualizarLibro(id, actualizarLibroDTO, usuarioCorreo);
         if (libroDTO == null) {
@@ -79,31 +77,31 @@ public class LibroController {
     public ResponseEntity<?> eliminarLibro(
             @RequestHeader("Authorization") String token, 
             @PathVariable Long id) {
-        
+
         String usuarioCorreo = jwtTokenProvider.getUsuario(token);
         libroService.eliminarLibro(id, usuarioCorreo);
         return ResponseEntity.noContent().build();
-    }    
-    
+    }
+
     @GetMapping
     public ResponseEntity<List<LibroDTO>> listarLibrosDelUsuario() {
     	List<LibroDTO> librosDTO = this.libroService.listarLibrosDelUsuario();
     	return ResponseEntity.ok(librosDTO);
-    }           
-    
+    }
+
     @GetMapping("/all")
     public ResponseEntity<List<LibroDTO>> listarLibros() {
     	List<LibroDTO> librosDTO = this.libroService.listarLibros();
     	return ResponseEntity.ok(librosDTO);
     }
-    
+
     @GetMapping("/byGender")
     public ResponseEntity<List<LibroDTO>> listarLibrosPorGenero(
             @RequestParam("genre") String genero) {
         List<LibroDTO> librosDTO = libroService.listarLibrosPorGenero(genero);
         return ResponseEntity.ok(librosDTO);
     }
-    
+
     @GetMapping("/search")
     public ResponseEntity<List<LibroDTO>> buscarLibros(
             @RequestParam("q") String palabraClave) {

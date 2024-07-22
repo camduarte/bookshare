@@ -17,14 +17,14 @@ package com.hackatong7.server.application.service;
  * @since 2024-07-19
  */
 public interface InvalidTokenService {
-    
+
     /**
      * Agrega un token a la lista de tokens inválidos.
      * 
      * @param token el token a agregar
      */
     void addToken(String token);
-    
+
     /**
      * Verifica si un token es inválido.
      * 
@@ -33,4 +33,3 @@ public interface InvalidTokenService {
      */
     boolean isTokenInvalid(String token);
 }
-
