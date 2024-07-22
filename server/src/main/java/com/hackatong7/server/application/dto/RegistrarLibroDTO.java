@@ -15,7 +15,7 @@ public class RegistrarLibroDTO {
     @Size(min = 1, max = 50, message = "El autor debe tener entre 1 y 50 caracteres")
     private String author;
     
-    @Size(max = 1000, message = "La descripcion debe tener entre hasta 1000 caracteres")    
+    @Size(max = 1000, message = "La descripcion debe maximo 1000 caracteres")    
     private String description;
     
     @NotBlank(message = "El genero no puede estar en blanco")
