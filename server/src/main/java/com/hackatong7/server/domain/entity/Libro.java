@@ -28,7 +28,7 @@ public class Libro {
     @Column(name = "Autor", nullable = false)
     private String autor;
 
-    @Column(name = "Descripcion")
+    @Column(name = "Descripcion", columnDefinition = "TEXT")
     private String descripcion;
 
     @Column(name = "Genero")
