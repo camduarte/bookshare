@@ -1,0 +1,14 @@
+/* ----------------------------- Navbar ----------------------------- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.625rem 0;
+  width: 100%;
+}
+
+.authLogin {
+  color: #fff;
+  text-decoration: none;
+  padding: 0 1rem;
+}
