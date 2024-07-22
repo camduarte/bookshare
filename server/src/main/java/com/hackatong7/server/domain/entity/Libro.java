@@ -31,7 +31,7 @@ public class Libro {
     @Column(name = "Descripcion", columnDefinition = "TEXT")
     private String descripcion;
 
-    @Column(name = "Genero")
+    @Column(name = "Genero", nullable = false)
     private String genero;
 
     @Column(name = "ImagenPortada", columnDefinition = "TEXT")

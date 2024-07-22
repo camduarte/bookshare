@@ -8,14 +8,18 @@ import org.hibernate.validator.constraints.URL;
 public class RegistrarLibroDTO {
     
     @NotBlank(message = "El título no puede estar en blanco")
-    @Size(min = 1, message = "El título no puede estar vacío")
+    @Size(min = 1, max = 150, message = "El Titulo debe tener entre 1 y 150 caracteres")
     private String title;
 
     @NotBlank(message = "El autor no puede estar en blanco")
-    @Size(min = 1, message = "El autor no puede estar vacío")
+    @Size(min = 1, max = 50, message = "El autor debe tener entre 1 y 50 caracteres")
     private String author;
     
+    @Size(max = 1000, message = "La descripcion debe tener entre hasta 1000 caracteres")    
     private String description;
+    
+    @NotBlank(message = "El genero no puede estar en blanco")
+    @Size(min = 1,max = 50, message = "El genero debe tener entre 1 y 50 caracteres")
     private String genre;
     
     @URL(message = "La URL de la imagen debe ser válida")
