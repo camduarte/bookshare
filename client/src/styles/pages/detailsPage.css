@@ -5,7 +5,8 @@
 }
 
 .image-container {
-  width: 411px;
+  width: 100%;
+  max-width: 411px;
   border-radius: 8px;
   overflow: hidden;
   box-shadow:
