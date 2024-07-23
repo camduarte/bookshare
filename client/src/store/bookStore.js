@@ -31,7 +31,6 @@ const useBookStore = create((set, get) => {
   };
 
   return {
-    token: Cookies.get('authToken') || null,
     allBooks: [],
     currentBook: null,
     filteredBooks: [],
@@ -40,7 +39,7 @@ const useBookStore = create((set, get) => {
 
     fetchAllBooks: async () => {
       const data = await handleApiCall(
-        () => getAllBooks(get().token),
+        (token) => getAllBooks(token),
         'Error al cargar los libros'
       );
       if (data) set({ allBooks: data, filteredBooks: data });
@@ -56,7 +55,7 @@ const useBookStore = create((set, get) => {
 
     fetchBookByIdUser: async (id) => {
       const data = await handleApiCall(
-        () => getBookById(get().token, id),
+        (token) => getBookById(token, id),
         'Error al buscar libros'
       );
       if (data) set({ currentBook: data });
@@ -64,28 +63,28 @@ const useBookStore = create((set, get) => {
 
     createBook: async (bookData) => {
       await handleApiCall(
-        () => postBook(get().token, bookData),
+        (token) => postBook(token, bookData),
         'Error al crear el libro'
       );
     },
 
     updateBook: async (id, bookData) => {
       await handleApiCall(
-        () => editBook(get().token, id, bookData),
+        (token) => editBook(token, id, bookData),
         'Error al actualizar el libro'
       );
     },
 
     deleteBook: async (id) => {
       await handleApiCall(
-        () => deleteBook(get().token, id),
+        (token) => deleteBook(token, id),
         'Error al eliminar el libro'
       );
     },
 
     searchBooks: async (searchTerm) => {
       const data = await handleApiCall(
-        () => getSearchData(get().token, searchTerm),
+        (token) => getSearchData(token, searchTerm),
         'Error al buscar libros'
       );
       if (data) set({ searchResults: data });
@@ -96,13 +95,13 @@ const useBookStore = create((set, get) => {
       let errorMessage;
 
       if (params.searchTerm) {
-        apiCall = () => getSearchData(get().token, params.searchTerm);
+        apiCall = (token) => getSearchData(token, params.searchTerm);
         errorMessage = 'Error al buscar libros';
       } else if (params.genre) {
-        apiCall = () => getBooksByGenre(get().token, params.genre);
+        apiCall = (token) => getBooksByGenre(token, params.genre);
         errorMessage = 'Error al filtrar libros por género';
       } else {
-        apiCall = () => getAllBooks(get().token);
+        apiCall = (token) => getAllBooks(token);
         errorMessage = 'Error al cargar los libros';
       }
 
