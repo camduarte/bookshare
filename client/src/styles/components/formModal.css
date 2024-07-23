@@ -46,3 +46,9 @@
   justify-content: end;
   margin-top: 1rem;
 }
+
+.file-input-info {
+  font-size: 0.875rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
