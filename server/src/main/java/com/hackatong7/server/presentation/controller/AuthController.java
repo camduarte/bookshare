@@ -48,12 +48,24 @@ public class AuthController {
         return ResponseEntity.ok().build();
     }
 
+    /**
+     * Endpoint para loguear el usuario.
+     * 
+     * @param loginDTO DTO que contiene los datos del usuario a loguear
+     * @return el token de autenticación
+     */
     @PostMapping("/login")
     public ResponseEntity<?> loginUsuario(@RequestBody LoginReqDTO loginDTO) {
         String token = authService.loginUsuario(loginDTO);
         return ResponseEntity.ok(new LoginResDTO(token));
     }
 
+    /**
+     * Endpoint para desloguear el usuario.
+     * 
+     * @param token el token de autenticación
+     * @return una respuesta HTTP 200 OK si el logout es exitoso
+     */
     @PostMapping("/logout")
     public ResponseEntity<?> logoutUsuario(@RequestHeader("Authorization") String token) {
         if (token != null && token.startsWith("Bearer ")) {

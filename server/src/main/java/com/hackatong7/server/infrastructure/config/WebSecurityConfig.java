@@ -3,6 +3,7 @@ package com.hackatong7.server.infrastructure.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,6 +16,17 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.hackatong7.server.infrastructure.filters.JwtAuthenticationFilter;
 
+/**
+ * Configuración de seguridad web para la aplicación.
+ * 
+ * <p>
+ * Este archivo está bajo la Licencia Pública General de GNU.
+ * </p>
+ * 
+ * @autor Christian Ariel Modesto Duarte
+ * @version 1.0
+ * @since 2024-07-18
+ */
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
@@ -31,6 +43,10 @@ public class WebSecurityConfig {
                 .requestMatchers("/api/auth/register").permitAll()
                 .requestMatchers("/api/auth/login").permitAll()
                 .requestMatchers("/api/auth/logout").authenticated()
+                .requestMatchers("/api/books/all").permitAll()
+                .requestMatchers("/api/books/byGender").permitAll()
+                .requestMatchers("/api/books/search").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/books/{id}").permitAll()
                 .requestMatchers("/h2-console/**").permitAll()
                 .anyRequest().authenticated()
             )
