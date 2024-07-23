@@ -1,5 +1,4 @@
 import { create } from 'zustand';
-import Cookies from 'js-cookie';
 import { getAllBooks, getBooksById } from '../services/getBooks';
 import { postBook } from '../services/addBook';
 import { editBook } from '../services/editBook';
@@ -39,7 +38,7 @@ const useBookStore = create((set, get) => {
 
     fetchAllBooks: async () => {
       const data = await handleApiCall(
-        (token) => getAllBooks(token),
+        () => getAllBooks(),
         'Error al cargar los libros'
       );
       if (data) set({ allBooks: data, filteredBooks: data });
@@ -84,7 +83,7 @@ const useBookStore = create((set, get) => {
 
     searchBooks: async (searchTerm) => {
       const data = await handleApiCall(
-        (token) => getSearchData(token, searchTerm),
+        () => getSearchData(searchTerm),
         'Error al buscar libros'
       );
       if (data) set({ searchResults: data });
@@ -95,13 +94,13 @@ const useBookStore = create((set, get) => {
       let errorMessage;
 
       if (params.searchTerm) {
-        apiCall = (token) => getSearchData(token, params.searchTerm);
+        apiCall = () => getSearchData(params.searchTerm);
         errorMessage = 'Error al buscar libros';
       } else if (params.genre) {
-        apiCall = (token) => getBooksByGenre(token, params.genre);
+        apiCall = () => getBooksByGenre(params.genre);
         errorMessage = 'Error al filtrar libros por género';
       } else {
-        apiCall = (token) => getAllBooks(token);
+        apiCall = () => getAllBooks();
         errorMessage = 'Error al cargar los libros';
       }
 
