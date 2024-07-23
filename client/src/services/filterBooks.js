@@ -1,9 +1,8 @@
 import { axiosClient } from '../lib/axiosClient';
 
-export const getBooksByGenre = async (token, genre) => {
+export const getBooksByGenre = async (genre) => {
   try {
     const res = await axiosClient.get('/api/books/byGender', {
-      headers: { Authorization: `Bearer ${token}` },
       params: { genre: genre },
     });
     return res.data;
