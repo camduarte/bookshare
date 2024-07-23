@@ -3,9 +3,9 @@ import React from 'react';
 import '../styles/components/deleteModal.css';
 import { toast } from 'sonner';
 import Button from './ui/Button';
-import useBookStore from '../store/bookStore';
 import useDelayedReload from '../hooks/useDelayedReload';
 import { XIcon } from '../assets/icons';
+import useAuthStore from '../store/authStore';
 
 /**
  *
@@ -15,7 +15,7 @@ import { XIcon } from '../assets/icons';
  *
  */
 const DeleteModal = ({ onClose, book }) => {
-  const { deleteBook } = useBookStore();
+  const { deleteBook } = useAuthStore();
   const delayedReload = useDelayedReload();
   /**
    *

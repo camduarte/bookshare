@@ -6,6 +6,9 @@ import {
   loginUser,
   registerUser,
 } from '../services/authUser';
+import { postBook } from '../services/addBook';
+import { editBook } from '../services/editBook';
+import { deleteBook } from '../services/deleteBook';
 
 const useAuthStore = create((set, get) => {
   const handleApiCall = async (apiCall, errorMessage) => {
@@ -74,6 +77,42 @@ const useAuthStore = create((set, get) => {
         'Error al obtener datos de los libros'
       );
       if (data) set({ booksData: data });
+    },
+
+    createBook: async (bookData) => {
+      const { token } = get();
+      if (!token) {
+        set({ error: 'No se encontró el token de autenticación' });
+        return;
+      }
+      await handleApiCall(
+        () => postBook(token, bookData),
+        'Error al crear el libro'
+      );
+    },
+
+    updateBook: async (id, bookData) => {
+      const { token } = get();
+      if (!token) {
+        set({ error: 'No se encontró el token de autenticación' });
+        return;
+      }
+      await handleApiCall(
+        () => editBook(token, id, bookData),
+        'Error al actualizar el libro'
+      );
+    },
+
+    deleteBook: async (id) => {
+      const { token } = get();
+      if (!token) {
+        set({ error: 'No se encontró el token de autenticación' });
+        return;
+      }
+      await handleApiCall(
+        () => deleteBook(token, id),
+        'Error al eliminar el libro'
+      );
     },
 
     logout: () => {
