@@ -38,14 +38,11 @@ public class LibroController {
     private JwtTokenProvider jwtTokenProvider;
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getLibroById(
-            @RequestHeader("Authorization") String token,
-            @PathVariable Long id) {
-
+    public ResponseEntity<?> getLibroById(@PathVariable Long id) {
         LibroDTO libroDTO = libroService.getLibro(id);
         if (libroDTO == null) {
             return ResponseEntity.notFound().build();
-        }        
+        }
         return ResponseEntity.ok(libroDTO);
     }
 
@@ -53,7 +50,7 @@ public class LibroController {
     public ResponseEntity<?> registrarLibro(
             @RequestHeader("Authorization") String token,
             @Valid @RequestBody RegistrarLibroDTO registrarLibroDTO) {
-        
+
         String usuarioCorreo = jwtTokenProvider.getUsuario(token);
         LibroDTO libroDTO = libroService.registrarLibro(registrarLibroDTO,usuarioCorreo);
         return ResponseEntity.ok(libroDTO);
