@@ -1,25 +1,15 @@
 import { create } from 'zustand';
 import { getAllBooks, getBooksById } from '../services/getBooks';
 import { postBook } from '../services/addBook';
-import { editBook } from '../services/editBook';
-import { deleteBook } from '../services/deleteBook';
 import { getSearchData } from '../services/searchBook';
 import { getBookById } from '../services/authUser';
 import { getBooksByGenre } from '../services/filterBooks';
-import useAuthStore from './authStore';
 
 const useBookStore = create((set, get) => {
-  const getToken = () => useAuthStore.getState().token;
   const handleApiCall = async (apiCall, errorMessage) => {
-    const token = getToken();
-    if (!token) {
-      set({ error: 'No se encontró el token de autenticación' });
-      return null;
-    }
-
     set({ isLoading: true });
     try {
-      const result = await apiCall(token);
+      const result = await apiCall();
       set({ isLoading: false, error: null });
       return result;
     } catch (error) {
@@ -64,20 +54,6 @@ const useBookStore = create((set, get) => {
       await handleApiCall(
         (token) => postBook(token, bookData),
         'Error al crear el libro'
-      );
-    },
-
-    updateBook: async (id, bookData) => {
-      await handleApiCall(
-        (token) => editBook(token, id, bookData),
-        'Error al actualizar el libro'
-      );
-    },
-
-    deleteBook: async (id) => {
-      await handleApiCall(
-        (token) => deleteBook(token, id),
-        'Error al eliminar el libro'
       );
     },
 
