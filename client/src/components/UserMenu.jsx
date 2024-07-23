@@ -35,20 +35,20 @@ const UserMenu = () => {
         <div className='menu'>
           <span className='menuItemTitle'>Mi Cuenta</span>
           <hr />
-          <ul className='menuItems'>
-            <li className='disable-option'>Perfil</li>
-            <li>
+          <div className='menuItems'>
+            <p className='disable-option'>Perfil</p>
+            <div>
               <a href='/mis-libros' className='menuItem' onClick={handleChange}>
                 Mis Libros
               </a>
-            </li>
-            <li>
+            </div>
+            <div>
               <a href='/libros' className='menuItem' onClick={handleChange}>
                 Explorar Libros
               </a>
-            </li>
-            <li className='disable-option'>Configuración</li>
-          </ul>
+            </div>
+            <p className='disable-option'>Configuración</p>
+          </div>
           <hr />
           <button onClick={handleLogout} className='menuLogout'>
             Cerrar Sesión

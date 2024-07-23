@@ -31,9 +31,10 @@
   font-weight: 600;
   padding: 0.375rem 0.5rem;
 }
-.menuItems > li {
+.menuItems {
   display: flex;
   flex-direction: column;
+  gap: 0.8rem;
 }
 .menuItem {
   text-decoration: none;
