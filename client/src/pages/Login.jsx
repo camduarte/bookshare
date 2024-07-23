@@ -34,11 +34,11 @@ const Login = () => {
     try {
       await login(email, password);
       reset();
-      toast.success('Ingresando al sistema', { duration: Infinity });
+      toast.success('Ingresando al sistema');
       navigate('/mis-libros');
     } catch (error) {
       const errorMessage = error.response?.data?.mensaje || 'Error desconocido';
-      toast.error(`${errorMessage}`, { duration: Infinity });
+      toast.error(`${errorMessage}`);
     }
   };
 

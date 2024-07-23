@@ -43,9 +43,8 @@
   padding: 0.375rem 0.5rem;
 }
 .disable-option {
-  color: var(--text-color);
+  color: var(--ring-color);
   border-radius: 4px;
-  background-color: var(--ring-color);
   padding: 0.375rem 0.5rem;
 }
 .menuItem:hover {
