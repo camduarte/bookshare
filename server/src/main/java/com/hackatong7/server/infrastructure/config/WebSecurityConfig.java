@@ -15,6 +15,17 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.hackatong7.server.infrastructure.filters.JwtAuthenticationFilter;
 
+/**
+ * Configuración de seguridad web para la aplicación.
+ * 
+ * <p>
+ * Este archivo está bajo la Licencia Pública General de GNU.
+ * </p>
+ * 
+ * @autor Christian Ariel Modesto Duarte
+ * @version 1.0
+ * @since 2024-07-18
+ */
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
