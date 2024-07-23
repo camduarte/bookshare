@@ -1,56 +1,48 @@
-/* App.css */
-.App {
-    text-align: center;
-  }
-  
-  /* AddBookModal.css */
-  .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 110;
-  }
-  
-  h1{
-    font-weight: bold;
-    font-size: 20px;
-  }
+/* AddBookModal.css */
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 110;
+}
 
-  .modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
-    width: 600px;
-    max-width: 90%;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .form-group label {
-    display: flex;
-    margin-bottom: 5px;
-  }
+.modal-content {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
 
-  .form1,  .form2{
-    width:500px;
-    display: flex;
-    justify-content: space-between;
-  }
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
 
-  
-  
-  
-  
-  .button-form {
-    margin-top: 10px;
-    padding: 10px 20px;
-  }
-  
+.modal-title {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+}
+
+.form-grid {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-input {
+  margin-top: 1rem;
+}
+
+.modal-footer {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  margin-top: 1rem;
+}

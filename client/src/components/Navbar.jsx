@@ -1,29 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
 import LogoBookShare from '../assets/logo/Logo.svg';
-import Input from './ui/Input';
 import Button from './ui/Button';
 import '../styles/components/navbar.css';
 import UserMenu from './UserMenu';
+import useAuthStore from '../store/authStore';
+import BookSearch from './BookSearch';
 
 const Navbar = () => {
-  const [token, setToken] = useState(true);
+  const { isAuthenticated } = useAuthStore();
   return (
     <div className='container'>
       <nav className='navbar'>
         <a href='/'>
           <img src={LogoBookShare} alt='bookshare-icon' />
         </a>
-        <Input placeholder='Buscar libros...' icon className='searchInput' />
-        {token ? (
-          <UserMenu username='adasdads' logout={() => setToken(false)} />
+        <BookSearch />
+        {isAuthenticated() ? (
+          <UserMenu />
         ) : (
-          <div className='authState'>
-            <Button>
-              <a href='/login' className='authLogin'>
-                Iniciar Sesión
-              </a>
-            </Button>
-          </div>
+          <Button asLink href='/auth/login' className='authLogin'>
+            Iniciar Sesión
+          </Button>
         )}
       </nav>
     </div>

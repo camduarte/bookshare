@@ -3,34 +3,16 @@ import '../styles/components/table.css';
 import { EditIcon, TrashIcon } from '../assets/icons';
 import Button from './ui/Button';
 import DeleteModal from './DeleteModal';
-import FormModalEdit from './FormModalEdit';
 
-const Table = () => {
+const Table = ({ books, onEdit }) => {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-  const [openFormModal, setOpenFormModal] = useState(false);
-  const data = [
-    {
-      id: 1,
-      title: 'El nombre del viento',
-      author: 'Patrick Rothfuss',
-      genre: 'Fantasía',
-      year: 2007,
-    },
-    {
-      id: 2,
-      title: '1984',
-      author: 'George Orwell',
-      genre: 'Distopía',
-      year: 1949,
-    },
-    {
-      id: 3,
-      title: 'Cien años de soledad',
-      author: 'Gabriel García Márquez',
-      genre: 'Realismo mágico',
-      year: 1967,
-    },
-  ];
+  const [bookToDelete, setBookToDelete] = useState(null);
+
+  const handleDeleteClick = (book) => {
+    setBookToDelete(book);
+    setDeleteModalOpen(true);
+  };
+
   return (
     <>
       <table className='table-container-header'>
@@ -44,7 +26,7 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          {data.map((book) => (
+          {books?.map((book) => (
             <tr key={book.id}>
               <td>
                 <a href={`detalles/${book.id}`}>{book.title}</a>
@@ -53,14 +35,17 @@ const Table = () => {
               <td>{book.genre}</td>
               <td>{book.year}</td>
               <td className='actions'>
-                <Button variant='outline' size='icon'  onClick={() => setOpenFormModal(true)}>
+                <Button
+                  variant='outline'
+                  size='icon'
+                  onClick={() => onEdit(book)}
+                >
                   <EditIcon />
-                 
                 </Button>
                 <Button
                   variant='outline'
                   size='icon'
-                  onClick={() => setDeleteModalOpen(true)}
+                  onClick={() => handleDeleteClick(book)}
                 >
                   <TrashIcon />
                 </Button>
@@ -70,9 +55,11 @@ const Table = () => {
         </tbody>
       </table>
       {deleteModalOpen && (
-        <DeleteModal onClose={() => setDeleteModalOpen(false)} />
+        <DeleteModal
+          onClose={() => setDeleteModalOpen(false)}
+          book={bookToDelete}
+        />
       )}
-       {openFormModal && <FormModalEdit onClose={() => setOpenFormModal(false)} />}
     </>
   );
 };
