@@ -41,6 +41,12 @@
   border-radius: 4px;
   padding: 0.375rem 0.5rem;
 }
+.disable-option {
+  color: var(--text-color);
+  border-radius: 4px;
+  background-color: var(--ring-color);
+  padding: 0.375rem 0.5rem;
+}
 .menuItem:hover {
   background-color: var(--primary-color);
   color: #fff;

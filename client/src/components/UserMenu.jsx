@@ -36,13 +36,18 @@ const UserMenu = () => {
           <span className='menuItemTitle'>Mi Cuenta</span>
           <hr />
           <ul className='menuItems'>
-            <li className='menuItem'>Perfil</li>
+            <li className='disable-option'>Perfil</li>
             <li>
               <a href='/mis-libros' className='menuItem' onClick={handleChange}>
                 Mis Libros
               </a>
             </li>
-            <li className='menuItem'>Configuración</li>
+            <li>
+              <a href='/libros' className='menuItem' onClick={handleChange}>
+                Explorar Libros
+              </a>
+            </li>
+            <li className='disable-option'>Configuración</li>
           </ul>
           <hr />
           <button onClick={handleLogout} className='menuLogout'>
