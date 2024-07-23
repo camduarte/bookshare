@@ -61,3 +61,12 @@
 |:-:|:-:|:-:|
 | <a href="https://github.com/camduarte"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="http://www.linkedin.com/in/christian-ariel-modesto-duarte"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://github.com/Nraihpuael"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/ricardo-ripa/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://github.com/SantiTV"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/santiago-tenjo-venegas"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
 <hr/>
+
+### Capturas
+<a href="https://ibb.co/ZNCzLwD"><img src="https://i.ibb.co/ZNCzLwD/Screenshot-from-2024-07-23-17-53-48.png" alt="Screenshot-from-2024-07-23-17-53-48" border="0" /></a>
+<a href="https://ibb.co/chqPtvq"><img src="https://i.ibb.co/chqPtvq/Screenshot-from-2024-07-23-17-53-56.png" alt="Screenshot-from-2024-07-23-17-53-56" border="0" /></a>
+<a href="https://ibb.co/dpjWHtZ"><img src="https://i.ibb.co/dpjWHtZ/Screenshot-from-2024-07-23-17-54-23.png" alt="Screenshot-from-2024-07-23-17-54-23" border="0" /></a>
+<a href="https://ibb.co/StGZSqV"><img src="https://i.ibb.co/StGZSqV/Screenshot-from-2024-07-23-17-57-57.png" alt="Screenshot-from-2024-07-23-17-57-57" border="0" /></a>
+<a href="https://ibb.co/jh9rbYk"><img src="https://i.ibb.co/jh9rbYk/Screenshot-from-2024-07-23-17-58-54.png" alt="Screenshot-from-2024-07-23-17-58-54" border="0" /></a>
+<a href="https://ibb.co/pjZ7s4j"><img src="https://i.ibb.co/pjZ7s4j/Screenshot-from-2024-07-23-17-59-13.png" alt="Screenshot-from-2024-07-23-17-59-13" border="0" /></a>
+<a href="https://ibb.co/NVjdXzp"><img src="https://i.ibb.co/NVjdXzp/Screenshot-from-2024-07-23-17-59-38.png" alt="Screenshot-from-2024-07-23-17-59-38" border="0" /></a>
