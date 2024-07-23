@@ -13,6 +13,7 @@ package com.hackatong7.server.application.dto;
  */
 public class LibroDTO {
 
+    
     private Long id;
     private String title;
     private String author;
