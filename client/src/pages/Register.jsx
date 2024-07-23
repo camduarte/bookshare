@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import '../styles/pages/register.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
@@ -63,7 +63,9 @@ const Register = () => {
   return (
     <div className='register-container'>
       <div className='register-card'>
-        <img src={Logo} alt='Company Logo' className='logo' />
+        <Link to='/'>
+          <img src={Logo} alt='Company Logo' className='logo' />
+        </Link>
         <h1 className='register-title'>Registrarse</h1>
 
         <form onSubmit={handleSubmit(onSubmit)}>

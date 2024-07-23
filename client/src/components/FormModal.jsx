@@ -26,6 +26,7 @@ const FormModal = ({ onClose, book }) => {
     trigger,
     reset,
     setValue,
+    setError,
   } = useForm({ resolver: zodResolver(bookSchema) });
 
   useEffect(() => {
@@ -47,6 +48,25 @@ const FormModal = ({ onClose, book }) => {
     async (event) => {
       const file = event.target.files[0];
       if (file) {
+        const validTypes = ['image/webp', 'image/jpeg', 'image/png'];
+        if (!validTypes.includes(file.type)) {
+          setValue('imgUrl', '');
+          setError('imgUrl', {
+            type: 'manual',
+            message:
+              'El archivo debe ser una imagen en formato webp, jpg, jpeg o png',
+          });
+          return;
+        }
+
+        if (file.size > 5 * 1024 * 1024) {
+          setValue('imgUrl', '');
+          setError('imgUrl', {
+            type: 'manual',
+            message: 'El tamaño del archivo no puede superar los 5MB',
+          });
+          return;
+        }
         const formData = new FormData();
         formData.append('file', file);
         formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
@@ -67,10 +87,14 @@ const FormModal = ({ onClose, book }) => {
           await trigger('imgUrl');
         } catch (error) {
           console.error('Error uploading to Cloudinary', error);
+          setError('imgUrl', {
+            type: 'manual',
+            message: 'Error al subir la imagen. Por favor, intente de nuevo.',
+          });
         }
       }
     },
-    [setValue, trigger]
+    [setValue, trigger, setError]
   );
 
   const onSubmit = async (data) => {
@@ -188,11 +212,16 @@ const FormModal = ({ onClose, book }) => {
             <Input
               label='Portada del Libro'
               type='file'
-              accept='image/*'
+              accept='.webp,.jpg,.jpeg,.png'
               onChange={handleFileUpload}
               className='form-input'
+              isError={!!errors.imgUrl}
+              errorMessage={errors.imgUrl?.message}
               required={!book}
             />
+            <small className='file-input-info'>
+              .webp, .jpg, .jpeg, .png | Tamaño máximo: 5MB
+            </small>
           </div>
         </div>
         <div className='modal-footer'>

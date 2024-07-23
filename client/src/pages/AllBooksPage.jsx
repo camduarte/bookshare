@@ -6,21 +6,27 @@ import Select from '../components/ui/Select';
 import useBookStore from '../store/bookStore';
 
 const AllBooksPage = () => {
-  const { filteredBooks, filterBooks, clearFilteredBooks } = useBookStore();
+  const {
+    allBooks,
+    filteredBooks,
+    fetchAllBooks,
+    filterBooks,
+    clearFilteredBooks,
+  } = useBookStore();
   const [selectedGenre, setSelectedGenre] = useState('');
 
   useEffect(() => {
-    filterBooks({});
-  }, [filterBooks]);
+    fetchAllBooks();
+  }, [fetchAllBooks]);
 
   const genreOptions = useMemo(() => {
-    if (!filteredBooks) return [];
-    const uniqueGenres = [...new Set(filteredBooks.map((book) => book.genre))];
+    if (!allBooks) return [];
+    const uniqueGenres = [...new Set(allBooks.map((book) => book.genre))];
     return uniqueGenres.map((genre) => ({
       value: genre,
       label: genre,
     }));
-  }, [filteredBooks]);
+  }, [allBooks]);
 
   const handleGenreChange = (e) => {
     const newGenre = e.target.value;
@@ -50,7 +56,7 @@ const AllBooksPage = () => {
         <div className='books-cards-container'>
           {filteredBooks &&
             filteredBooks.map((book) => (
-              <div key={book.id}>
+              <div key={book.id} className='card-popular-books'>
                 <Card {...book} />
               </div>
             ))}
