@@ -1,10 +1,8 @@
 import { axiosClient } from '../lib/axiosClient';
 
-export const getAllBooks = async (token) => {
+export const getAllBooks = async () => {
   try {
-    const res = await axiosClient.get('/api/books/all', {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const res = await axiosClient.get('/api/books/all');
     return res.data;
   } catch (error) {
     console.log('Error al obtener los libros', error);

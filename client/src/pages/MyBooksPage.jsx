@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
 import { PlusIcon } from '../assets/icons';
 import Table from '../components/Table';
 import Button from '../components/ui/Button';
@@ -7,18 +7,29 @@ import FormModal from '../components/FormModal';
 import useAuthStore from '../store/authStore';
 
 export default function MyBooksPage() {
-  const { fetchBooksData, booksData } = useAuthStore();
+  const { fetchBooksData, booksData, isLoading } = useAuthStore();
   const [openFormModal, setOpenFormModal] = useState(false);
   const [editingBook, setEditingBook] = useState(null);
+  const MemoizedTable = memo(Table);
 
   useEffect(() => {
     fetchBooksData();
   }, [fetchBooksData]);
 
-  const handleEditBook = (book) => {
+  const handleEditBook = useCallback((book) => {
     setEditingBook(book);
     setOpenFormModal(true);
-  };
+  }, []);
+
+  const handleCloseModal = useCallback(() => {
+    setOpenFormModal(false);
+    setEditingBook(null);
+  }, []);
+
+  const handleOpenNewBookModal = useCallback(() => {
+    setEditingBook(null);
+    setOpenFormModal(true);
+  }, []);
 
   return (
     <>
@@ -26,20 +37,21 @@ export default function MyBooksPage() {
         <div className='my-books-container'>
           <h1 className='primary-title'>Mis Libros</h1>
           <div className='button-container'>
-            <Button
-              leftIcon={<PlusIcon />}
-              onClick={() => setOpenFormModal(true)}
-            >
+            <Button leftIcon={<PlusIcon />} onClick={handleOpenNewBookModal}>
               Añadir Nuevo Libro
             </Button>
           </div>
           <div className='table-container'>
-            <Table books={booksData} onEdit={handleEditBook} />
+            <MemoizedTable
+              books={booksData}
+              onEdit={handleEditBook}
+              isLoading={isLoading}
+            />
           </div>
         </div>
       </main>
       {openFormModal && (
-        <FormModal onClose={() => setOpenFormModal(false)} book={editingBook} />
+        <FormModal onClose={handleCloseModal} book={editingBook} />
       )}
     </>
   );

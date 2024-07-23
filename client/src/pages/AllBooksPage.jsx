@@ -4,6 +4,7 @@ import Card from '../components/Card';
 import '../styles/pages/allBooksPage.css';
 import Select from '../components/ui/Select';
 import useBookStore from '../store/bookStore';
+import { Skeleton } from '../components/ui/Skeleton';
 
 const AllBooksPage = () => {
   const {
@@ -12,6 +13,7 @@ const AllBooksPage = () => {
     fetchAllBooks,
     filterBooks,
     clearFilteredBooks,
+    isLoading,
   } = useBookStore();
   const [selectedGenre, setSelectedGenre] = useState('');
 
@@ -40,6 +42,16 @@ const AllBooksPage = () => {
     filterBooks({});
   };
 
+  const renderSkeletonCards = () => {
+    return Array(4)
+      .fill()
+      .map((_, i) => (
+        <div key={i} className='card-popular-books'>
+          <Skeleton style={{ width: '100%', height: '28rem' }} />
+        </div>
+      ));
+  };
+
   return (
     <main className='container' style={{ marginTop: '5rem' }}>
       <div className='all-books-container'>
@@ -54,12 +66,14 @@ const AllBooksPage = () => {
           <Button onClick={handleClearFilters}>Limpiar filtros</Button>
         </div>
         <div className='books-cards-container'>
-          {filteredBooks &&
-            filteredBooks.map((book) => (
-              <div key={book.id} className='card-popular-books'>
-                <Card {...book} />
-              </div>
-            ))}
+          {isLoading
+            ? renderSkeletonCards()
+            : filteredBooks &&
+              filteredBooks.map((book) => (
+                <div key={book.id} className='card-popular-books'>
+                  <Card {...book} />
+                </div>
+              ))}
         </div>
       </div>
     </main>

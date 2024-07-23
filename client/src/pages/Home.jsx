@@ -6,9 +6,12 @@ import Card from '../components/Card';
 // import useBookStore from '../store/bookStore';
 import useBookStore from '../store/bookStore';
 import '../styles/pages/homePage.css';
+import { Skeleton } from '../components/ui/Skeleton';
+import useAuthStore from '../store/authStore';
 
 export default function Home() {
-  const { fetchAllBooks, allBooks } = useBookStore();
+  const { isAuthenticated } = useAuthStore();
+  const { fetchAllBooks, allBooks, isLoading } = useBookStore();
 
   useEffect(() => {
     fetchAllBooks();
@@ -18,6 +21,16 @@ export default function Home() {
     ?.slice()
     .sort((a, b) => new Date(b.id) - new Date(a.id))
     .slice(0, 4);
+
+  const renderSkeletonCards = () => {
+    return Array(4)
+      .fill()
+      .map((_, i) => (
+        <div key={i} className='card-popular-books'>
+          <Skeleton style={{ width: '100%', height: '28rem' }} />
+        </div>
+      ));
+  };
 
   return (
     <main className='home-main'>
@@ -33,13 +46,17 @@ export default function Home() {
             favorita.
           </p>
           <div className='hero-buttons'>
-            <Button
-              asLink
-              href='/auth/register'
-              className='register-button-home'
-            >
-              Regístrate Gratis
-            </Button>
+            {isAuthenticated() ? (
+              ''
+            ) : (
+              <Button
+                asLink
+                href='/auth/register'
+                className='register-button-home'
+              >
+                Regístrate Gratis
+              </Button>
+            )}
             <Button
               variant='ghost'
               rightIcon={<ArrowRightIcon />}
@@ -57,11 +74,13 @@ export default function Home() {
         <div className='popular-books'>
           <h2 className='popular-books-title'>Libros Recientes</h2>
           <div className='popular-books-cards'>
-            {newBooks?.map((book) => (
-              <div key={book.id} className='card-popular'>
-                <Card {...book} />
-              </div>
-            ))}
+            {isLoading
+              ? renderSkeletonCards()
+              : newBooks?.map((book) => (
+                  <div key={book.id} className='card-popular'>
+                    <Card {...book} />
+                  </div>
+                ))}
           </div>
           <div>
             <Button asLink href='/libros' className='explore-button-books'>
