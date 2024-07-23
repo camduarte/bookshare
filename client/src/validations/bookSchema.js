@@ -1,9 +1,18 @@
 import { z } from 'zod';
 
 export const bookSchema = z.object({
-  title: z.string().min(1, 'El título es requerido'),
-  author: z.string().min(1, 'El autor es requerido'),
-  genre: z.string().min(1, 'El género es requerido'),
+  title: z
+    .string()
+    .min(1, 'El título es requerido')
+    .max(150, 'El título no puede tener más de 150 caracteres'),
+  author: z
+    .string()
+    .min(1, 'El autor es requerido')
+    .max(50, 'El autor no puede tener más de 50 caracteres'),
+  genre: z
+    .string()
+    .min(1, 'El género es requerido')
+    .max(50, 'El género no puede tener más de 50 caracteres'),
   year: z
     .string()
     .refine(
@@ -18,6 +27,12 @@ export const bookSchema = z.object({
     ),
   description: z
     .string()
-    .min(10, 'La descripción debe tener al menos 10 caracteres'),
-  imgUrl: z.string().url('Debe ser una URL válida'),
+    .min(10, 'La descripción debe tener al menos 10 caracteres')
+    .max(1000, 'La descripción no puede tener más de 1000 caracteres'),
+  imgUrl: z
+    .string()
+    .url('Debe ser una URL válida')
+    .refine((url) => /\.(webp|jpg|jpeg|png)$/i.test(url), {
+      message: 'La URL debe ser una imagen en formato webp, jpg, jpeg o png',
+    }),
 });

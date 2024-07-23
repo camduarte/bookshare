@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import '../styles/pages/login.css';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import { LoginSchema } from '../validations/authSchema';
 import Input from '../components/ui/Input';
@@ -52,7 +52,9 @@ const Login = () => {
   return (
     <div className='login-container'>
       <div className='login-card'>
-        <img src={Logo} alt='Company Logo' className='logo' />
+        <Link to='/'>
+          <img src={Logo} alt='Company Logo' className='logo' />
+        </Link>
         <h1 className='login-title'>Iniciar Sesión</h1>
 
         <form onSubmit={handleSubmit(onSubmit)}>
