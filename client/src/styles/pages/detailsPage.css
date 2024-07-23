@@ -6,7 +6,6 @@
 
 .image-container {
   width: 411px;
-  aspect-ratio: 1 / 1;
   border-radius: 8px;
   overflow: hidden;
   box-shadow:
@@ -16,7 +15,7 @@
 
 .image-container img {
   width: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .detail-container-info {

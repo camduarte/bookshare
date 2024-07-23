@@ -9,7 +9,7 @@ import { AppRouter } from './router/AppRouter';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
-      <Toaster position='top-center' richColors />
+      <Toaster position='top-right' richColors />
       <AppRouter />
     </BrowserRouter>
   </React.StrictMode>

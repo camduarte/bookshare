@@ -8,11 +8,11 @@ import useBookStore from '../store/bookStore';
 import '../styles/pages/homePage.css';
 
 export default function Home() {
-  const { fetchBooks, allBooks } = useBookStore();
+  const { fetchAllBooks, allBooks } = useBookStore();
 
   useEffect(() => {
-    fetchBooks();
-  }, [fetchBooks]);
+    fetchAllBooks();
+  }, [fetchAllBooks]);
 
   const newBooks = allBooks
     ?.slice()

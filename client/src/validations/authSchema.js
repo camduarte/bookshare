@@ -10,7 +10,7 @@ export const AuthBaseSchema = z.object({
   name: z
     .string()
     .min(4, 'El nombre de usuario debe tener al menos 4 caracteres')
-    .max(20, 'El nombre de usuario no puede tener más de 20 caracteres')
+    .max(50, 'El nombre de usuario no puede tener más de 20 caracteres')
     .regex(/^[a-zA-Z\s]+$/, 'El nombre solo puede contener letras y espacios')
     .trim(),
   email: z
