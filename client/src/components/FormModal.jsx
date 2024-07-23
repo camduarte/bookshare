@@ -5,7 +5,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
 import Button from './ui/Button';
 import Input from './ui/Input';
-import useBookStore from '../store/bookStore';
 import { bookSchema } from '../validations/bookSchema';
 import { XIcon } from '../assets/icons';
 import {
@@ -13,10 +12,11 @@ import {
   CLOUDINARY_CLOUD_NAME,
 } from '../config/cloudinary';
 import useDelayedReload from '../hooks/useDelayedReload';
+import useAuthStore from '../store/authStore';
 
 const FormModal = ({ onClose, book }) => {
   const { createBook, updateBook, isLoading, error, clearError } =
-    useBookStore();
+    useAuthStore();
   const delayedReload = useDelayedReload();
 
   const {
